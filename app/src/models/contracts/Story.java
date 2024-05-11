@@ -1,6 +1,6 @@
 package models.contracts;
 
-import models.Person;
+import models.PersonImpl;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
