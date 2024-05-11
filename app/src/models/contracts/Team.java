@@ -8,8 +8,8 @@ public interface Team {
     String getName();
     List<Board> getBoards();
 
-    void addMember(Member memberToAdd);
-    void  removeMember(Member memberToRemove);
+    void addMember(Person memberToAdd);
+    void  removeMember(Person memberToRemove);
     void addBoard(Board boardToAdd);
     void  removeBoard(Board boardToRemove);
 }

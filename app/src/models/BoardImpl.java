@@ -1,21 +1,21 @@
 package models;
 
-import models.contracts.Person;
+import models.contracts.Board;
 import models.contracts.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonImpl implements Person{
+public class BoardImpl implements Board {
     private String name;
-    private List<Task> tasks;
+    private final List<Task> tasks;
 
-    public PersonImpl(String name) {
+    public BoardImpl(String name) {
         setName(name);
         tasks = new ArrayList<>();
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
         this.name = name;
     }
 
