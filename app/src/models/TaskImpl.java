@@ -54,11 +54,21 @@ public abstract class TaskImpl implements Task {
         return this.description;
     }
 
-    private void addComments(Comment commentToAdd) {
+    public ArrayList<String> getHistory() {
+        return new ArrayList<>(history);
+    }
+
+    public List<Comment> getComments() {
+        return new ArrayList<>(comments);
+    }
+
+    @Override
+    public void addComment(Comment commentToAdd) {
         comments.add(commentToAdd);
     }
 
-    private void removeComment(Comment commentToRemove) {
+    @Override
+    public void removeComment(Comment commentToRemove) {
         comments.remove(commentToRemove);
     }
 }
