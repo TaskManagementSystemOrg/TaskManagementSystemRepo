@@ -3,7 +3,11 @@ package models;
 import Utils.ValidationHelpers;
 import models.contracts.Task;
 
-public abstract class TaskImpl implements Task {
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+public class TaskImpl implements Task {
     public static final int TITLE_MIN_LENGTH = 10;
     public static final int TITLE_MAX_LENGTH = 100;
     public static final String TITLE_OUT_OF_BOUNDS_ERROR_MSG = "Title should be between 10 and 100 characters!";
@@ -13,11 +17,13 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
+    private ArrayList<String> history;
 
     public TaskImpl(int id, String title, String description) {
         this.id = id;
         setTitle(title);
         setDescription(description);
+        this.history = new ArrayList<>();
     }
 
     private void setTitle(String title) {
