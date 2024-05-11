@@ -1,6 +1,7 @@
 package models;
 
 import Utils.ValidationHelpers;
+import models.contracts.Comment;
 import models.contracts.Task;
 
 import java.time.LocalDateTime;
@@ -18,12 +19,14 @@ public abstract class TaskImpl implements Task {
     private String title;
     private String description;
     private ArrayList<String> history;
+    private List<Comment> comments;
 
     public TaskImpl(int id, String title, String description) {
         this.id = id;
         setTitle(title);
         setDescription(description);
         this.history = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     private void setTitle(String title) {
@@ -49,5 +52,13 @@ public abstract class TaskImpl implements Task {
     @Override
     public String getDescription() {
         return this.description;
+    }
+
+    private void addComments(Comment commentToAdd) {
+        comments.add(commentToAdd);
+    }
+
+    private void removeComment(Comment commentToRemove) {
+        comments.remove(commentToRemove);
     }
 }
