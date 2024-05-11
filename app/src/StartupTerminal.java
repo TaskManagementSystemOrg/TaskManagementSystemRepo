@@ -14,7 +14,7 @@ public class StartupTerminal {
             ProcessBuilder runBuilder = new ProcessBuilder();
 
             if (osName.contains("win")) {
-                runBuilder = new ProcessBuilder( "cmd.exe", "/k", "java", "-jar " + jarPath);
+                runBuilder = new ProcessBuilder( "cmd.exe", "/c", "start", "java", "-jar", jarPath);
             } else if (osName.contains("linux")) {
                 runBuilder.command("xfce4-terminal", "--command", "java -jar " + jarPath);
             } else if (osName.contains("mac")) {
