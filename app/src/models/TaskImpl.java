@@ -33,7 +33,6 @@ public abstract class TaskImpl implements Task {
         ValidationHelpers.validateStringLength(title, TITLE_MIN_LENGTH, TITLE_MAX_LENGTH, TITLE_OUT_OF_BOUNDS_ERROR_MSG);
         this.title = title;
     }
-
     private void setDescription(String description) {
         ValidationHelpers.validateStringLength(description, DESCRIPTION_MIN_LENGTH, DESCRIPTION_MAX_LENGTH, DESCRIPTION_OUT_OF_BOUND_ERROR_MESSAGE);
         this.description = description;
@@ -43,21 +42,17 @@ public abstract class TaskImpl implements Task {
     public int getId() {
         return this.id;
     }
-
     @Override
     public String getTitle() {
         return this.title;
     }
-
     @Override
     public String getDescription() {
         return this.description;
     }
-
     public ArrayList<String> getHistory() {
         return new ArrayList<>(history);
     }
-
     public List<Comment> getComments() {
         return new ArrayList<>(comments);
     }
@@ -66,7 +61,6 @@ public abstract class TaskImpl implements Task {
     public void addComment(Comment commentToAdd) {
         comments.add(commentToAdd);
     }
-
     @Override
     public void removeComment(Comment commentToRemove) {
         comments.remove(commentToRemove);
