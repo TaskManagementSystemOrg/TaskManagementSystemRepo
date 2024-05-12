@@ -1,4 +1,12 @@
 package commands.creation;
 
-public class CreateNewTaskCommand {
+import commands.contracts.Command;
+
+import java.util.List;
+
+public class CreateNewTaskCommand implements Command {
+    @Override
+    public String execute(List<String> parameters) {
+        return "";
+    }
 }
