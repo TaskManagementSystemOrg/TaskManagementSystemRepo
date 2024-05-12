@@ -7,7 +7,10 @@ import java.util.List;
 
 public class AddPersonToTeamCommand implements Command {
     protected final TaskManagementSystemRepository taskManagementSystemRepository;
-    public AddPersonToTeamCommand(TaskManagementSystemRepository taskManagementSystemRepository) {this.taskManagementSystemRepository = taskManagementSystemRepository;}
+
+    public AddPersonToTeamCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
+        this.taskManagementSystemRepository = taskManagementSystemRepository;
+    }
 
     @Override
     public String execute(List<String> parameters) {

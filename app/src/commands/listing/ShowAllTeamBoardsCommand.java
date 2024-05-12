@@ -7,7 +7,10 @@ import java.util.List;
 
 public class ShowAllTeamBoardsCommand implements Command {
     protected final TaskManagementSystemRepository taskManagementSystemRepository;
-    public ShowAllTeamBoardsCommand(TaskManagementSystemRepository taskManagementSystemRepository) {this.taskManagementSystemRepository = taskManagementSystemRepository;}
+
+    public ShowAllTeamBoardsCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
+        this.taskManagementSystemRepository = taskManagementSystemRepository;
+    }
 
     @Override
     public String execute(List<String> parameters) {
