@@ -1,8 +1,9 @@
 package models;
 
+import models.contracts.Comment;
 import models.contracts.Person;
 
-public class CommentImpl {
+public class CommentImpl implements Comment {
     private Person author;
     private String content;
 
