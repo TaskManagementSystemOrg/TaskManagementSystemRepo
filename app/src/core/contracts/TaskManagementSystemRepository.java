@@ -7,16 +7,16 @@ import models.enums.*;
 import java.util.List;
 
 public interface TaskManagementSystemRepository {
-    Person getPeople();
-    Team getTeams();
-    Person getMembers(Team team);
-    Board getBoards(Team team);
+    List<Person> getPeople();
+    List<Team> getTeams();
+    List<Person> getMembers(Team team);
+    List<Board> getBoards(Team team);
     List<String> getActivity(Person person);
     List<String> getActivity(Team team);
     List<String> getActivity(Board board);
-    Task getTasks();
-    Task getTasks(Team team);
-    Task getTasks(Board board);
+    List<Task> getTasks();
+    List<Task> getTasks(Team team);
+    List<Task> getTasks(Board board);
 
     Comment createComment(Person author, String content);
     Person createPerson(String name);
