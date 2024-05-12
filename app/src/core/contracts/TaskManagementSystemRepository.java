@@ -18,6 +18,11 @@ public interface TaskManagementSystemRepository {
     List<Task> getTasks(Team team);
     List<Task> getTasks(Board board);
 
+    Task findTaskByName(String name);
+    Person findPersonByName(String name);
+    Team findTeamByName(String name);
+    Board findBoard(Board board);
+
     Comment createComment(Person author, String content);
     Person createPerson(String name);
     Team createTeam(String name);
