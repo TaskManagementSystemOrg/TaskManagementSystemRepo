@@ -33,4 +33,8 @@ public class BoardImpl implements Board {
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
     }
+    @Override
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
 }
