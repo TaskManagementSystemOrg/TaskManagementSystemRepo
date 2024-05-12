@@ -37,3 +37,4 @@ public class ParsingHelpers {
             throw new IllegalArgumentException(String.format(errorMessage, valueToParse));
         }
     }
+}
