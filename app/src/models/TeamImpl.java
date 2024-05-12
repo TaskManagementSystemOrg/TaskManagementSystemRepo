@@ -1,5 +1,6 @@
 package models;
 
+import Utils.ValidationHelpers;
 import models.contracts.Board;
 import models.contracts.Person;
 import models.contracts.Team;
@@ -9,6 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeamImpl implements Team {
+    public static final int NAME_MIN_LENGTH = 5;
+    public static final int NAME_MAX_LENGTH = 15;
+    public static final String NAME_OUT_OF_BOUNDS_ERROR_MSG = "Name should be between 5 and 15 characters.";
     private String name;
     private final List<Person> members;
     private final List<Board> boards;
@@ -19,7 +23,8 @@ public class TeamImpl implements Team {
         boards = new ArrayList<>();
     }
 
-    public void setName(String name) {
+    private void setName(String name) {
+        ValidationHelpers.validateStringLength(name, NAME_MIN_LENGTH, NAME_MAX_LENGTH, NAME_OUT_OF_BOUNDS_ERROR_MSG);
         this.name = name;
     }
 
