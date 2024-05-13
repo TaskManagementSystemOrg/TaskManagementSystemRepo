@@ -106,11 +106,11 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
 
     @Override
-    public Board findBoard(Board board) {
+    public Board findBoardByName(String name) {
         for (Team team : getTeams()) {
             for (Board board1 : team.getBoards()) {
-                if (board1.equals(board)) {
-                    return board;
+                if (board1.getName().equalsIgnoreCase(name)) {
+                    return board1;
                 }
             }
         }
@@ -147,21 +147,21 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     public Bug createBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity,
                          BugStatus status, Person assignee, Board board) {
         Bug bug = new BugImpl(++nextId, title, description, stepsToReproduce, priority, severity, status, assignee);
-        findBoard(board).addTask(bug);
+        findBoardByName(board.getName()).addTask(bug);
         return bug;
     }
 
     @Override
     public Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee, Board board) {
         Story story = new StoryImpl(++nextId, title, description, priority, size, status, assignee);
-        findBoard(board).addTask(story);
+        findBoardByName(board.getName()).addTask(story);
         return story;
     }
 
     @Override
     public Feedback createFeedback(String title, String description, int rating, FeedbackStatus status, Board board) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating, status);
-        findBoard(board).addTask(feedback);
+        findBoardByName(board.getName()).addTask(feedback);
         return feedback;
     }
 }

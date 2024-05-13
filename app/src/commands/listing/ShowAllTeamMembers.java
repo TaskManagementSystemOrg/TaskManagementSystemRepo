@@ -19,7 +19,8 @@ public class ShowAllTeamMembers implements Command {
     @Override
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        List<Person> people = taskManagementSystemRepository.findTeamByName(parameters.get(0)).getMembers();
+        String name = parameters.get(0);
+        List<Person> people = taskManagementSystemRepository.findTeamByName(name).getMembers();
         if (people.isEmpty()) {
             return "There are no members in this team.";
         }

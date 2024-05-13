@@ -13,10 +13,12 @@ public class BoardImpl implements Board {
     public static final String NAME_OUT_OF_BOUNDS_ERROR_MSG = "Name should be between 5 and 10 characters.";
     private String name;
     private final List<Task> tasks;
+    private final List<String> activity;
 
     public BoardImpl(String name) {
         setName(name);
         tasks = new ArrayList<>();
+        activity = new ArrayList<>();
     }
 
     private void setName(String name) {
@@ -32,6 +34,10 @@ public class BoardImpl implements Board {
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
+    }
+    @Override
+    public List<String> getActivity() {
+        return new ArrayList<>(activity);
     }
     @Override
     public void addTask(Task task) {

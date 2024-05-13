@@ -7,9 +7,11 @@ public interface Team extends Printable{
     List<Person> getMembers();
     String getName();
     List<Board> getBoards();
+    List<String> getActivity();
 
     void addMember(Person memberToAdd);
     void  removeMember(Person memberToRemove);
     void addBoard(Board boardToAdd);
     void  removeBoard(Board boardToRemove);
+
 }

@@ -19,7 +19,8 @@ public class ShowAllTeamBoardsCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        List<Board> boards = taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(parameters.get(0)));
+        String name = parameters.get(0);
+        List<Board> boards = taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(name));
         if (boards.isEmpty()) {
             return "There are no boards in this team.";
         }

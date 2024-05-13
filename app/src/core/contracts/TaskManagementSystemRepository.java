@@ -21,7 +21,7 @@ public interface TaskManagementSystemRepository {
     Task findTaskByName(String name);
     Person findPersonByName(String name);
     Team findTeamByName(String name);
-    Board findBoard(Board board);
+    Board findBoardByName(String name);
 
     Comment createComment(Person author, String content);
     Person createPerson(String name);

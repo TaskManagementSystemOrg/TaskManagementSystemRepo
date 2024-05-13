@@ -16,11 +16,13 @@ public class TeamImpl implements Team {
     private String name;
     private final List<Person> members;
     private final List<Board> boards;
+    private final List<String> activity;
 
     public TeamImpl(String name) {
         setName(name);
         members = new ArrayList<>();
         boards = new ArrayList<>();
+        activity = new ArrayList<>();
     }
 
     private void setName(String name) {
@@ -41,6 +43,10 @@ public class TeamImpl implements Team {
     @Override
     public List<Board> getBoards() {
         return new ArrayList<>(boards);
+    }
+    @Override
+    public List<String> getActivity() {
+        return new ArrayList<>(activity);
     }
 
     @Override

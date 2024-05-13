@@ -16,10 +16,12 @@ public class PersonImpl implements Person {
 
     private String name;
     private List<Task> tasks;
+    private List<String> activity;
 
     public PersonImpl(String name) {
         setName(name);
         tasks = new ArrayList<>();
+        activity = new ArrayList<>();
     }
 
     private void setName(String name) {
@@ -35,6 +37,10 @@ public class PersonImpl implements Person {
     @Override
     public List<Task> getTasks() {
         return new ArrayList<>(tasks);
+    }
+    @Override
+    public List<String> getActivity() {
+        return new ArrayList<>(activity);
     }
 
     @Override

@@ -1,11 +1,13 @@
 package commands.listing;
 
+import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
 import java.util.List;
 
 public class ShowBoardActivityCommand implements Command {
+    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     protected final TaskManagementSystemRepository taskManagementSystemRepository;
 
     public ShowBoardActivityCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
@@ -14,6 +16,13 @@ public class ShowBoardActivityCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        return "";
+        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
+        StringBuilder stringBuilder = new StringBuilder();
+        String name = parameters.get(0);
+        List<String> activity = taskManagementSystemRepository.findBoardByName(name).getActivity();
+        for (String activity1 : activity) {
+            stringBuilder.append(activity1);
+        }
+        return stringBuilder.toString();
     }
 }
