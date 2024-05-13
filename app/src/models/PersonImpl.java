@@ -47,4 +47,13 @@ public class PersonImpl implements Person {
     public String getAsString() {
         return String.format("Name: %s", getName());
     }
+
+    @Override
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+    @Override
+    public void removeTask(Task task) {
+        tasks.remove(task);
+    }
 }
