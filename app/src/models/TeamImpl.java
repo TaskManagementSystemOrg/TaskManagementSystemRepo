@@ -62,4 +62,9 @@ public class TeamImpl implements Team {
     public void removeBoard(Board boardToRemove) {
         boards.remove(boardToRemove);
     }
+
+    @Override
+    public String getAsString() {
+        return String.format("Name: %s", getName());
+    }
 }

@@ -3,7 +3,7 @@ package models.contracts;
 import java.lang.reflect.Member;
 import java.util.List;
 
-public interface Team {
+public interface Team extends Printable{
     List<Person> getMembers();
     String getName();
     List<Board> getBoards();

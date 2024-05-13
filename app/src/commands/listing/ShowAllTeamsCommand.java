@@ -1,19 +1,24 @@
 package commands.listing;
 
+import Utils.ListingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
+import models.contracts.Team;
 
 import java.util.List;
 
 public class ShowAllTeamsCommand implements Command {
-    protected final TaskManagementSystemRepository taskManagementSystemRepository;
+    private final List<Team> teams;
 
     public ShowAllTeamsCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
-        this.taskManagementSystemRepository = taskManagementSystemRepository;
+        teams = taskManagementSystemRepository.getTeams();
     }
 
     @Override
     public String execute(List<String> parameters) {
-        return "";
+        if (teams.isEmpty()) {
+            return "There are no teams created yet.";
+        }
+        return ListingHelpers.elementsToString(teams);
     }
 }

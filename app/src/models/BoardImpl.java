@@ -37,4 +37,9 @@ public class BoardImpl implements Board {
     public void addTask(Task task) {
         tasks.add(task);
     }
+
+    @Override
+    public String getAsString() {
+        return String.format("Name: %s", getName());
+    }
 }

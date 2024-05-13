@@ -2,7 +2,7 @@ package models.contracts;
 
 import java.util.List;
 
-public interface Person {
+public interface Person extends Printable{
     String getName();
     List<Task> getTasks();
 }
