@@ -10,7 +10,7 @@ import java.util.List;
 
 public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemRepository {
 
-    private int nextId;
+    private static int nextId;
 
     private final List<Task> tasks;
     private final List<Team> teams;
