@@ -17,7 +17,7 @@ public abstract class CreateNewEntityCommand<T> implements Command {
     public String execute(List<String> params) {
         EntityBuilder<T> builder = createEntityBuilder();
         T entity = builder.build();
-        return String.format("%s created: %s", entity.getClass().getSimpleName());
+        return String.format("%s created", entity.getClass().getSimpleName());
     }
 
     protected abstract EntityBuilder<T> createEntityBuilder();
