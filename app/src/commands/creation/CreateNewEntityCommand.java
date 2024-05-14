@@ -17,6 +17,9 @@ public abstract class CreateNewEntityCommand<T> implements Command {
     public String execute(List<String> params) {
         EntityBuilder<T> builder = createEntityBuilder();
         T entity = builder.build();
+        if (entity == null) {
+            return "Try again.";
+        }
         return String.format("%s created", entity.getClass().getSimpleName());
     }
 
