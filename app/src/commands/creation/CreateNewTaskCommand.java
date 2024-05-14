@@ -7,10 +7,10 @@ import java.util.List;
 
 public abstract class CreateNewTaskCommand implements Command {
 
-    protected final TaskManagementSystemRepository taskManagementSystemRepository;
+    protected final TaskManagementSystemRepository repository;
 
     public CreateNewTaskCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
-        this.taskManagementSystemRepository = taskManagementSystemRepository;
+        this.repository = taskManagementSystemRepository;
     }
 
     @Override
