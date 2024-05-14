@@ -2,5 +2,5 @@ package models.contracts;
 
 public interface Printable {
 
-    String getAsString();
+    String toString();
 }

@@ -3,6 +3,7 @@ package models.builders;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
 import models.BoardImpl;
+import models.contracts.Team;
 
 import java.util.Scanner;
 
@@ -31,12 +32,19 @@ public class BoardBuilder extends EntityBuilder<Board> {
         super.collectCommonAttributes();
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Type help to see all teams.\nEnter team name (5-15 characters): ");
+        System.out.print("Type help to see all teams or enter team name (5-15 characters): ");
         teamName = scanner.nextLine();
-        if (teamName.equalsIgnoreCase("help")) {
-            System.out.println(repository.getTeams().toString());
-        }
         while (!isValidName(teamName)) {
+            if (teamName.equalsIgnoreCase("help")) {
+                StringBuilder stringBuilder = new StringBuilder();
+                for (Team team : repository.getTeams()) {
+                    stringBuilder.append(team.toString());
+                }
+                System.out.println(stringBuilder.toString());
+                System.out.println("Enter team name (5-15 characters): ");
+                teamName = scanner.nextLine();
+                continue;
+            }
             System.out.print("Invalid team name. Enter name (5-15 characters): ");
             teamName = scanner.nextLine();
         }

@@ -70,7 +70,7 @@ public class TeamImpl implements Team {
     }
 
     @Override
-    public String getAsString() {
-        return String.format("Name: %s", getName());
+    public String toString() {
+        return String.format("Team name: %s", getName());
     }
 }

@@ -44,7 +44,7 @@ public class PersonImpl implements Person {
     }
 
     @Override
-    public String getAsString() {
+    public String toString() {
         return String.format("Name: %s", getName());
     }
 
