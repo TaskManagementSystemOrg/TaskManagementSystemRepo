@@ -1,19 +1,19 @@
 package commands.creation;
 
-import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
+import models.builders.PersonBuilder;
+import models.contracts.Person;
 
 import java.util.List;
 
-public class CreateNewPersonCommand implements Command {
-    protected final TaskManagementSystemRepository taskManagementSystemRepository;
+public class CreateNewPersonCommand extends CreateNewEntityCommand<Person> {
 
-    public CreateNewPersonCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
-        this.taskManagementSystemRepository = taskManagementSystemRepository;
+    public CreateNewPersonCommand(TaskManagementSystemRepository repository) {
+        super(repository);
     }
 
     @Override
-    public String execute(List<String> parameters) {
-        return "";
+    protected PersonBuilder createEntityBuilder() {
+        return new PersonBuilder(repository);
     }
 }
