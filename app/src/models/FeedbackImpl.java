@@ -13,10 +13,12 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
         setStatus(status);
     }
 
-    private void setRating(int rating) {
+    @Override
+    public void setRating(int rating) {
         this.rating = rating;
     }
-    private void setStatus(FeedbackStatus status) {
+    @Override
+    public void setStatus(FeedbackStatus status) {
         this.status = status;
     }
 

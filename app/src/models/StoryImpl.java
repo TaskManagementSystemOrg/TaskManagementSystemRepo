@@ -19,14 +19,16 @@ public class StoryImpl extends TaskImpl implements Story {
         setStatus(status);
         setAssignee(assignee);
     }
-
-    private void setPriority(Priority priority) {
+    @Override
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
-    private void setSize(Size size) {
+    @Override
+    public void setSize(Size size) {
         this.size = size;
     }
-    private void setStatus(StoryStatus status) {
+    @Override
+    public void setStatus(StoryStatus status) {
         this.status = status;
     }
     private void setAssignee(Person assignee) {

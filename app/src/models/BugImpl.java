@@ -30,13 +30,16 @@ public class BugImpl extends TaskImpl implements Bug {
     private void setSteps(List<String> stepsToReproduce) {
         this.stepsToReproduce = stepsToReproduce;
     }
-    private void setPriority(Priority priority) {
+    @Override
+    public void setPriority(Priority priority) {
         this.priority = priority;
     }
-    private void setSeverity(Severity severity) {
+    @Override
+    public void setSeverity(Severity severity) {
         this.severity = severity;
     }
-    private void setStatus(BugStatus status) {
+    @Override
+    public void setStatus(BugStatus status) {
         this.status = status;
     }
     private void setAssignee(Person assignee) {

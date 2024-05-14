@@ -14,5 +14,8 @@ public interface Bug extends Task{
     Person getAssignee();
     List<Comment> getComments();
     List<String> getHistory();
+    void setPriority(Priority priority);
+    void setSeverity(Severity severity);
+    void setStatus(BugStatus status);
 
 }

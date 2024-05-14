@@ -1,6 +1,7 @@
 package models.contracts;
 
 import models.PersonImpl;
+import models.StoryImpl;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
@@ -14,4 +15,7 @@ public interface Story extends Task{
     Person getAssignee();
     List<Comment> getComments();
     List<String> getHistory();
+    void setPriority(Priority priority);
+    void setSize(Size size);
+    void setStatus(StoryStatus status);
 }
