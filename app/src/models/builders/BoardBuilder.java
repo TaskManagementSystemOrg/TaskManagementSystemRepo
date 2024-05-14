@@ -1,11 +1,10 @@
 package models.builders;
 
 import core.contracts.TaskManagementSystemRepository;
-import models.BoardImpl;
 import models.contracts.Board;
+import models.BoardImpl;
 
 public class BoardBuilder extends EntityBuilder<Board> {
-
     public BoardBuilder(TaskManagementSystemRepository repository) {
         super(repository);
     }
@@ -13,6 +12,6 @@ public class BoardBuilder extends EntityBuilder<Board> {
     @Override
     public Board build() {
         collectCommonAttributes();
-        return new BoardImpl(name);
+        return repository.createBoardInTeam(name,name);
     }
 }

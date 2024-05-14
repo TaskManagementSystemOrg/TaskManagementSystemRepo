@@ -1,11 +1,10 @@
 package models.builders;
 
 import core.contracts.TaskManagementSystemRepository;
-import models.TeamImpl;
 import models.contracts.Team;
+import models.TeamImpl;
 
 public class TeamBuilder extends EntityBuilder<Team> {
-
     public TeamBuilder(TaskManagementSystemRepository repository) {
         super(repository);
     }
@@ -13,6 +12,6 @@ public class TeamBuilder extends EntityBuilder<Team> {
     @Override
     public Team build() {
         collectCommonAttributes();
-        return new TeamImpl(name);
+        return repository.createTeam(name);
     }
 }

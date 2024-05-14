@@ -1,11 +1,10 @@
 package models.builders;
 
 import core.contracts.TaskManagementSystemRepository;
-import models.PersonImpl;
 import models.contracts.Person;
+import models.PersonImpl;
 
 public class PersonBuilder extends EntityBuilder<Person> {
-
     public PersonBuilder(TaskManagementSystemRepository repository) {
         super(repository);
     }
@@ -13,6 +12,6 @@ public class PersonBuilder extends EntityBuilder<Person> {
     @Override
     public Person build() {
         collectCommonAttributes();
-        return new PersonImpl(name);
+        return repository.createPerson(name);
     }
 }
