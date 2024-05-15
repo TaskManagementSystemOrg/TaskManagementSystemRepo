@@ -35,8 +35,17 @@ public abstract class TaskBuilder<T> {
             description = scanner.nextLine();
         }
 
-        System.out.print("Enter assignee name: ");
+        System.out.print("Type help to see all people or enter assignee name: ");
         String assigneeName = scanner.nextLine();
+        if (assigneeName.equalsIgnoreCase("help")) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Person person : repository.getPeople()) {
+                stringBuilder.append(person.toString());
+            }
+            System.out.println(stringBuilder);
+            System.out.println("Enter assignee name: ");
+            assigneeName = scanner.nextLine();
+        }
         assignee = repository.findPersonByName(assigneeName);
         while (assignee == null) {
             System.out.print("Assignee not found. Enter assignee name: ");
@@ -44,8 +53,17 @@ public abstract class TaskBuilder<T> {
             assignee = repository.findPersonByName(assigneeName);
         }
 
-        System.out.print("Enter board name: ");
+        System.out.print("Type help to see all boards or enter board name: ");
         String boardName = scanner.nextLine();
+        if (boardName.equalsIgnoreCase("help")) {
+            StringBuilder stringBuilder = new StringBuilder();
+            for (Board board1 : repository.getBoards()) {
+                stringBuilder.append(board1);
+            }
+            System.out.println(stringBuilder);
+            System.out.println("Enter board name: ");
+            boardName = scanner.nextLine();
+        }
         board = repository.findBoardByName(boardName);
         while (board == null) {
             System.out.print("Board not found. Enter board name: ");
