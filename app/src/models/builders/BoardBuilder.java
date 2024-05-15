@@ -34,7 +34,7 @@ public class BoardBuilder extends EntityBuilder<Board> {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Type help to see all teams or enter team name (5-15 characters): ");
         teamName = scanner.nextLine();
-        while (!isValidName(teamName)) {
+        while (!isValidName(teamName) || !repository.getTeams().contains(repository.findTeamByName(teamName))) {
             if (teamName.equalsIgnoreCase("help")) {
                 StringBuilder stringBuilder = new StringBuilder();
                 for (Team team : repository.getTeams()) {
