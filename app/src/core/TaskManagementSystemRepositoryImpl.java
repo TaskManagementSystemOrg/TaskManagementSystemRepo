@@ -42,6 +42,15 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
 
     @Override
+    public List<Board> getBoards() {
+        List<Board> boards = new ArrayList<>();
+        for (Team team : getTeams()) {
+            boards.addAll(getBoards(team));
+        }
+        return boards;
+    }
+
+    @Override
     public List<String> getActivity(Person person) {
         return null;
     }

@@ -11,6 +11,7 @@ public interface TaskManagementSystemRepository {
     List<Team> getTeams();
     List<Person> getMembers(Team team);
     List<Board> getBoards(Team team);
+    List<Board> getBoards();
     List<String> getActivity(Person person);
     List<String> getActivity(Team team);
     List<String> getActivity(Board board);

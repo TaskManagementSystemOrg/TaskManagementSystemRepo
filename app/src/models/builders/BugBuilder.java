@@ -27,6 +27,9 @@ public class BugBuilder extends TaskBuilder<Bug> {
 
     @Override
     public Bug build() {
+        if (repository.getTeams().isEmpty() || repository.getPeople().isEmpty() || repository.getBoards().isEmpty()) {
+            return null;
+        }
         collectCommonAttributes();
 
         stepsToReproduce = new ArrayList<>();
