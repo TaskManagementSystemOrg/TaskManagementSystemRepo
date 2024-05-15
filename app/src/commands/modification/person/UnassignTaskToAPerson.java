@@ -1,4 +1,4 @@
-package commands.modification;
+package commands.modification.person;
 
 import Utils.ValidationHelpers;
 import commands.contracts.Command;

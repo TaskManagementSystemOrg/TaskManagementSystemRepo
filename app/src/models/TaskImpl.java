@@ -18,7 +18,7 @@ public abstract class TaskImpl implements Task {
     private int id;
     private String title;
     private String description;
-    private ArrayList<String> history;
+    private List<String> history;
     private List<Comment> comments;
 
     public TaskImpl(int id, String title, String description) {

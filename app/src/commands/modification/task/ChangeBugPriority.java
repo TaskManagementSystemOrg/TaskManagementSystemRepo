@@ -1,12 +1,10 @@
-package commands.task_modification;
+package commands.modification.task;
 
 import Utils.ParsingHelpers;
 import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.BugImpl;
 import models.contracts.Bug;
-import models.contracts.Task;
 import models.enums.Priority;
 
 import java.util.List;

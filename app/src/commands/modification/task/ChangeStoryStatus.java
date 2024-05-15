@@ -1,4 +1,4 @@
-package commands.task_modification;
+package commands.modification.task;
 
 import Utils.ParsingHelpers;
 import Utils.ValidationHelpers;

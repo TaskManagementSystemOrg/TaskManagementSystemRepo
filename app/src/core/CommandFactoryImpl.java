@@ -5,10 +5,10 @@ import commands.contracts.Command;
 import commands.creation.*;
 import commands.enums.CommandType;
 import commands.listing.*;
-import commands.modification.AddPersonToTeamCommand;
-import commands.modification.AssignTaskToAPerson;
-import commands.modification.UnassignTaskToAPerson;
-import commands.task_modification.*;
+import commands.modification.person.AddPersonToTeamCommand;
+import commands.modification.person.AssignTaskToAPerson;
+import commands.modification.person.UnassignTaskToAPerson;
+import commands.modification.task.*;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
 

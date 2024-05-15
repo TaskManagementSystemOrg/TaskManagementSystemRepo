@@ -2,13 +2,13 @@ package models.builders;
 
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
-import models.BoardImpl;
 import models.contracts.Team;
 
 import java.util.Scanner;
 
 public class BoardBuilder extends EntityBuilder<Board> {
     private String teamName;
+
     public BoardBuilder(TaskManagementSystemRepository repository) {
         super(repository);
     }
@@ -20,7 +20,7 @@ public class BoardBuilder extends EntityBuilder<Board> {
             return null;
         }
         collectCommonAttributes();
-        return repository.createBoardInTeam(name,name);
+        return repository.createBoardInTeam(name, teamName);
     }
 
     @Override
@@ -40,7 +40,7 @@ public class BoardBuilder extends EntityBuilder<Board> {
                 for (Team team : repository.getTeams()) {
                     stringBuilder.append(team.toString());
                 }
-                System.out.println(stringBuilder.toString());
+                System.out.println(stringBuilder);
                 System.out.println("Enter team name (5-15 characters): ");
                 teamName = scanner.nextLine();
                 continue;

@@ -1,31 +1,30 @@
-package commands.task_modification;
+package commands.modification.task;
 
 import Utils.ParsingHelpers;
 import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Feedback;
-import models.enums.FeedbackStatus;
-import models.enums.Priority;
+import models.contracts.Bug;
+import models.enums.BugStatus;
 
 import java.util.List;
 
-public class ChangeFeedbackStatus implements Command {
+public class ChangeBugStatus implements Command {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     protected final TaskManagementSystemRepository taskManagementSystemRepository;
 
-    public ChangeFeedbackStatus(TaskManagementSystemRepository taskManagementSystemRepository) {
+    public ChangeBugStatus(TaskManagementSystemRepository taskManagementSystemRepository) {
         this.taskManagementSystemRepository = taskManagementSystemRepository;
     }
 
     @Override
     public String execute(List<String> parameters) {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String feedbackName = parameters.get(0);
-        FeedbackStatus status = ParsingHelpers.tryParseEnum(parameters.get(1), FeedbackStatus.class, "Not a valid input.");
-        Feedback feedback = (Feedback) taskManagementSystemRepository.findTaskByName(feedbackName);
-        FeedbackStatus oldValue = feedback.getStatus();
-        feedback.setStatus(status);
+        String bugName = parameters.get(0);
+        BugStatus status = ParsingHelpers.tryParseEnum(parameters.get(1), BugStatus.class, "Not a valid input.");
+        Bug bug = (Bug) taskManagementSystemRepository.findTaskByName(bugName);
+        BugStatus oldValue = bug.getStatus();
+        bug.setStatus(status);
         return String.format("Status changed from %s to %s", oldValue, status);
     }
 }
