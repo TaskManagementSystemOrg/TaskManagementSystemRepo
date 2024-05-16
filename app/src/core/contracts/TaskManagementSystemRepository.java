@@ -32,5 +32,7 @@ public interface TaskManagementSystemRepository {
                   Severity severity, BugStatus status, Person assignee, Board board);
     Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee, Board board);
     Feedback createFeedback(String title, String description, int rating, FeedbackStatus status, Board board);
-    void savePeopleToJson();
+
+    Board getCurrentBoard();
+    void setCurrentBoard(Board board);
 }
