@@ -1,11 +1,13 @@
 package models;
 
+import Utils.FormattingHelpers;
 import Utils.ValidationHelpers;
 import models.contracts.Person;
 import models.contracts.Printable;
 import models.contracts.Task;
 
 import javax.naming.Name;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,12 +18,13 @@ public class PersonImpl implements Person {
 
     private String name;
     private List<Task> tasks;
-    private List<String> activity;
+    private List<String> activityHistory;
 
     public PersonImpl(String name) {
         setName(name);
         tasks = new ArrayList<>();
-        activity = new ArrayList<>();
+        activityHistory = new ArrayList<>();
+        activityHistory.add(String.format("Person %s created on %s", name, LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     private void setName(String name) {
@@ -40,7 +43,7 @@ public class PersonImpl implements Person {
     }
     @Override
     public List<String> getActivity() {
-        return new ArrayList<>(activity);
+        return new ArrayList<>(activityHistory);
     }
 
     @Override
@@ -51,9 +54,11 @@ public class PersonImpl implements Person {
     @Override
     public void addTask(Task task) {
         tasks.add(task);
+        activityHistory.add(String.format("Added task %s to %s on %s", task.getTitle(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
     @Override
     public void removeTask(Task task) {
         tasks.remove(task);
+        activityHistory.add(String.format("Removed task %s from %s on %s", task.getTitle(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 }

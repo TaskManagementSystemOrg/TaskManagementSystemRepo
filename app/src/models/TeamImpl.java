@@ -1,11 +1,13 @@
 package models;
 
+import Utils.FormattingHelpers;
 import Utils.ValidationHelpers;
 import models.contracts.Board;
 import models.contracts.Person;
 import models.contracts.Team;
 
 import java.lang.reflect.Member;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +18,14 @@ public class TeamImpl implements Team {
     private String name;
     private final List<Person> members;
     private final List<Board> boards;
-    private final List<String> activity;
+    private final List<String> activityHistory;
 
     public TeamImpl(String name) {
         setName(name);
         members = new ArrayList<>();
         boards = new ArrayList<>();
-        activity = new ArrayList<>();
+        activityHistory = new ArrayList<>();
+        activityHistory.add(String.format("Team %s created on %s", name, LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     private void setName(String name) {
@@ -46,27 +49,31 @@ public class TeamImpl implements Team {
     }
     @Override
     public List<String> getActivity() {
-        return new ArrayList<>(activity);
+        return new ArrayList<>(activityHistory);
     }
 
     @Override
     public void addMember(Person memberToAdd) {
         members.add(memberToAdd);
+        activityHistory.add(String.format("Member %s added to %s on %s", memberToAdd.getName(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
     public void removeMember(Person memberToRemove) {
         members.remove(memberToRemove);
+        activityHistory.add(String.format("Member %s removed from %s on %s", memberToRemove.getName(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
     public void addBoard(Board boardToAdd) {
         boards.add(boardToAdd);
+        activityHistory.add(String.format("Board %s added to %s on %s", boardToAdd.getName(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
     public void removeBoard(Board boardToRemove) {
         boards.remove(boardToRemove);
+        activityHistory.add(String.format("Board %s removed from %s on %s", boardToRemove.getName(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
