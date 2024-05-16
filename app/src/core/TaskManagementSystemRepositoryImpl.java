@@ -2,13 +2,16 @@ package core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
 import models.enums.*;
 
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -187,6 +190,20 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
         try (FileWriter writer = new FileWriter(DATA_FILE)) {
             gson.toJson(people, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    public void loadPeopleFromJson() {
+        Gson gson = new GsonBuilder().create();
+
+        try (FileReader reader = new FileReader(DATA_FILE)) {
+            Type personListType = new TypeToken<List<Person>>() {}.getType();
+            List<Person> loadedPeople = gson.fromJson(reader, personListType);
+            if (loadedPeople != null) {
+                this.people.addAll(loadedPeople);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

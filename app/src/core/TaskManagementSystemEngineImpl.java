@@ -21,6 +21,7 @@ public class TaskManagementSystemEngineImpl implements Engine {
     }
 
     public void start() {
+        taskManagementSystemRepository.loadPeopleFromJson();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             try {
