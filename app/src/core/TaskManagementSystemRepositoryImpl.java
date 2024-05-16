@@ -1,10 +1,14 @@
 package core;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
 import models.enums.*;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -174,6 +178,16 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating, status);
         findBoardByName(board.getName()).addTask(feedback);
         return feedback;
+    }
+    @Override
+    public void savePeopleToJson() {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+        try (FileWriter writer = new FileWriter(DATA_FILE)) {
+            gson.toJson(people, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }
