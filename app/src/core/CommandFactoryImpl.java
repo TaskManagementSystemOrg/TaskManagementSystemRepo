@@ -1,6 +1,7 @@
 package core;
 
 import Utils.ParsingHelpers;
+import com.google.gson.Gson;
 import commands.contracts.Command;
 import commands.creation.*;
 import commands.enums.CommandType;
@@ -11,6 +12,7 @@ import commands.modification.person.UnassignTaskToAPerson;
 import commands.modification.task.*;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
+import models.contracts.Board;
 
 public class CommandFactoryImpl implements CommandFactory {
     private static final String INVALID_COMMAND = "Invalid command name: %s!";
@@ -71,6 +73,5 @@ public class CommandFactoryImpl implements CommandFactory {
             default:
                 throw new IllegalArgumentException();
         }
-
     }
 }
