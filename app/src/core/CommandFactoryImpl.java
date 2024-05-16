@@ -2,6 +2,7 @@ package core;
 
 import Utils.ParsingHelpers;
 import com.google.gson.Gson;
+import commands.SaveCommand;
 import commands.contracts.Command;
 import commands.creation.*;
 import commands.enums.CommandType;
@@ -79,6 +80,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new UnassignTaskToAPerson(taskManagementSystemRepository);
             case ENTER_BOARD:
                 return new EnterBoardCommand(taskManagementSystemRepository);
+            case SAVE:
+                return new SaveCommand(taskManagementSystemRepository);
             default:
                 throw new IllegalArgumentException();
         }

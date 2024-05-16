@@ -25,7 +25,8 @@ public enum CommandType {
     CHANGE_FEEDBACK_STATUS("Change the Status of a feedback"),
     ASSIGN_TASK("Assign a task to a person"),
     UNASSIGN_TASK("Unassign a task from a person"),
-    ENTER_BOARD("Enter a board to go into.");
+    ENTER_BOARD("Enter a board to go into."),
+    SAVE("Saves to json");
 
     private final String description;
 

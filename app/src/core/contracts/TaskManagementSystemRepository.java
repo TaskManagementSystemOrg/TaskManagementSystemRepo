@@ -35,4 +35,5 @@ public interface TaskManagementSystemRepository {
 
     Board getCurrentBoard();
     void setCurrentBoard(Board board);
+    void savePeopleToJson();
 }
