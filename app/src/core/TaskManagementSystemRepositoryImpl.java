@@ -12,6 +12,8 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     private static int nextId;
 
+    private Board currentBoard = null;
+
     private final List<Task> tasks;
     private final List<Team> teams;
     private final List<Person> people;
@@ -174,6 +176,16 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating, status);
         findBoardByName(board.getName()).addTask(feedback);
         return feedback;
+    }
+
+    @Override
+    public Board getCurrentBoard() {
+        return currentBoard;
+    }
+
+    @Override
+    public void setCurrentBoard(Board board) {
+        this.currentBoard = board;
     }
 
 }
