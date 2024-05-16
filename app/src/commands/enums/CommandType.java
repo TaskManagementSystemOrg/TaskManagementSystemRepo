@@ -24,7 +24,8 @@ public enum CommandType {
     CHANGE_FEEDBACK_RATING("Change the Rating of a feedback"),
     CHANGE_FEEDBACK_STATUS("Change the Status of a feedback"),
     ASSIGN_TASK("Assign a task to a person"),
-    UNASSIGN_TASK("Unassign a task from a person");
+    UNASSIGN_TASK("Unassign a task from a person"),
+    ENTER_BOARD("Enter a board to go into.");
 
     private final String description;
 

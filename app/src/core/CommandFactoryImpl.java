@@ -10,6 +10,7 @@ import commands.modification.person.AddPersonToTeamCommand;
 import commands.modification.person.AssignTaskToAPerson;
 import commands.modification.person.UnassignTaskToAPerson;
 import commands.modification.task.*;
+import commands.navigation.EnterBoardCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
@@ -20,6 +21,12 @@ public class CommandFactoryImpl implements CommandFactory {
     @Override
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagementSystemRepository taskManagementSystemRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class, String.format(INVALID_COMMAND, commandTypeAsString));
+
+        if (taskManagementSystemRepository.getCurrentBoard() != null) {
+            switch (commandType) {
+
+            }
+        }
 
         switch (commandType) {
             case CREATE_PERSON:
@@ -70,6 +77,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new AssignTaskToAPerson(taskManagementSystemRepository);
             case UNASSIGN_TASK:
                 return new UnassignTaskToAPerson(taskManagementSystemRepository);
+            case ENTER_BOARD:
+                return new EnterBoardCommand(taskManagementSystemRepository);
             default:
                 throw new IllegalArgumentException();
         }
