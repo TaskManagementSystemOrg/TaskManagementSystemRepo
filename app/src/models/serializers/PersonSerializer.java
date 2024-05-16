@@ -1,11 +1,9 @@
 package models.serializers;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonSerializationContext;
-import com.google.gson.JsonSerializer;
+import com.google.gson.*;
 import models.PersonImpl;
 import models.contracts.Person;
+import models.contracts.Task;
 
 import java.lang.reflect.Type;
 
@@ -14,6 +12,19 @@ public class PersonSerializer implements JsonSerializer<PersonImpl> {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("class", person.getClass().getName());
         jsonObject.addProperty("name",person.getName());
+        JsonArray tasksArray = new JsonArray();
+        for (Task task : person.getTasks()) {
+            tasksArray.add(context.serialize(task));
+        }
+        jsonObject.add("tasks", tasksArray);
+        JsonArray activityArray = new JsonArray();
+        for (String activity : person.getActivity()) {
+            activityArray.add(new JsonPrimitive(activity));
+        }
+
+        jsonObject.add("activityHistory", activityArray);
+
         return jsonObject;
+
     }
 }
