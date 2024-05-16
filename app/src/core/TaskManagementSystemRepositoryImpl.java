@@ -8,9 +8,7 @@ import models.*;
 import models.contracts.*;
 import models.enums.*;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -197,6 +195,17 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public void loadPeopleFromJson() {
         Gson gson = new GsonBuilder().create();
+
+        File file = new File(DATA_FILE);
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
 
         try (FileReader reader = new FileReader(DATA_FILE)) {
             Type personListType = new TypeToken<List<Person>>() {}.getType();
