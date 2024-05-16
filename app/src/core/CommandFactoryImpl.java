@@ -12,9 +12,13 @@ import commands.modification.person.AssignTaskToAPerson;
 import commands.modification.person.UnassignTaskToAPerson;
 import commands.modification.task.*;
 import commands.navigation.EnterBoardCommand;
+import commands.navigation.ExitBoardCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommandFactoryImpl implements CommandFactory {
     private static final String INVALID_COMMAND = "Invalid command name: %s!";
@@ -25,11 +29,22 @@ public class CommandFactoryImpl implements CommandFactory {
 
         if (taskManagementSystemRepository.getCurrentBoard() != null) {
             switch (commandType) {
+                case SHOW_BOARD_ACTIVITY:
+                    return new ShowBoardActivityCommand(taskManagementSystemRepository);
+                case CREATE_BUG:
+                    return new CreateNewBugCommand(taskManagementSystemRepository);
+                case CREATE_STORY:
+                    return new CreateNewStoryCommand(taskManagementSystemRepository);
+                case CREATE_FEEDBACK:
+                    return new CreateNewFeedbackCommand(taskManagementSystemRepository);
+                case EXIT_BOARD:
+                    return new ExitBoardCommand(taskManagementSystemRepository);
+                default:
+                    throw new IllegalArgumentException();
 
             }
-        }
-
-        switch (commandType) {
+        } else
+            switch (commandType) {
             case CREATE_PERSON:
                 return new CreateNewPersonCommand(taskManagementSystemRepository);
             case SHOW_ALL_PEOPLE:

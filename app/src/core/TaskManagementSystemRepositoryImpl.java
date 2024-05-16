@@ -189,12 +189,12 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Board getCurrentBoard() {
-        return null;
+        return this.currentBoard;
     }
 
     @Override
     public void setCurrentBoard(Board board) {
-
+        this.currentBoard = board;
     }
 
     @Override

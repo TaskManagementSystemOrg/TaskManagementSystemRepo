@@ -26,7 +26,9 @@ public enum CommandType {
     ASSIGN_TASK("Assign a task to a person"),
     UNASSIGN_TASK("Unassign a task from a person"),
     ENTER_BOARD("Enter a board to go into."),
-    SAVE("Saves to json");
+    SAVE("Saves to json"),
+    SHOW_ENTERED_BOARD("Shows entered board"),
+    EXIT_BOARD("exits current entered board/team/person");
 
     private final String description;
 
