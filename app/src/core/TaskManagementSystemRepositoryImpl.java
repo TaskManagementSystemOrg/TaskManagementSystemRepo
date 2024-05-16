@@ -2,11 +2,15 @@ package core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
+import models.deserializers.PersonDeserializer;
 import models.enums.*;
+import models.serializers.PersonSerializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -182,9 +186,22 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         findBoardByName(board.getName()).addTask(feedback);
         return feedback;
     }
+
+    @Override
+    public Board getCurrentBoard() {
+        return null;
+    }
+
+    @Override
+    public void setCurrentBoard(Board board) {
+
+    }
+
     @Override
     public void savePeopleToJson() {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(PersonImpl.class, new PersonSerializer())
+                .create();
 
         try (FileWriter writer = new FileWriter(DATA_FILE)) {
             gson.toJson(people, writer);
@@ -194,7 +211,9 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
     @Override
     public void loadPeopleFromJson() {
-        Gson gson = new GsonBuilder().create();
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Person.class, new PersonDeserializer());
+        Gson gson = gsonBuilder.create();
 
         File file = new File(DATA_FILE);
 
@@ -207,7 +226,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
             }
         }
 
-        try (FileReader reader = new FileReader(DATA_FILE)) {
+        try (FileReader reader = new FileReader(file)) {
             Type personListType = new TypeToken<List<Person>>() {}.getType();
             List<Person> loadedPeople = gson.fromJson(reader, personListType);
             if (loadedPeople != null) {
@@ -216,16 +235,6 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public Board getCurrentBoard() {
-        return currentBoard;
-    }
-
-    @Override
-    public void setCurrentBoard(Board board) {
-        this.currentBoard = board;
     }
 
 }

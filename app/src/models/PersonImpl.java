@@ -61,4 +61,8 @@ public class PersonImpl implements Person {
         tasks.remove(task);
         activityHistory.add(String.format("Removed task %s from %s on %s", task.getTitle(), getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
+    @Override
+    public String getClassName() {
+        return this.getClass().getName();
+    }
 }

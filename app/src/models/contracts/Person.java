@@ -8,4 +8,5 @@ public interface Person extends Printable{
     List<String> getActivity();
     void addTask(Task task);
     void removeTask(Task task);
+    public String getClassName();
 }
