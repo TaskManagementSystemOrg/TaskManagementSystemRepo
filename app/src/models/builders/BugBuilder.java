@@ -58,7 +58,9 @@ public class BugBuilder extends TaskBuilder<Bug> {
 
         status = BugStatus.ACTIVE;  // Default status
 
-        return repository.createBug(title, description, stepsToReproduce, priority, severity, status, assignee, board);
+        Bug bug = repository.createBug(title, description, stepsToReproduce, priority, severity, status, assignee, board);
+        assignee.addTask(bug);
+        return bug;
     }
 
     private boolean isValidPriority(String priority) {
