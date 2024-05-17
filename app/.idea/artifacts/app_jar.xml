@@ -3,6 +3,8 @@
     <output-path>$PROJECT_DIR$/out/artifacts/app_jar</output-path>
     <root id="archive" name="app.jar">
       <element id="module-output" name="app" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gson-2.10.1.jar" path-in-jar="/" />
+      <element id="library" level="project" name="google.code.gson" />
     </root>
   </artifact>
 </component>
