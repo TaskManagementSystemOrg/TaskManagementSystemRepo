@@ -17,6 +17,7 @@ import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class CommandFactoryImpl implements CommandFactory {
     @Override
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagementSystemRepository taskManagementSystemRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class, String.format(INVALID_COMMAND, commandTypeAsString));
+        clearConsole();
 
         if (taskManagementSystemRepository.getCurrentBoard() != null) {
             switch (commandType) {
@@ -99,6 +101,19 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new SaveCommand(taskManagementSystemRepository);
             default:
                 throw new IllegalArgumentException();
+        }
+    }
+    public static void clearConsole() {
+        try {
+            String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 }
