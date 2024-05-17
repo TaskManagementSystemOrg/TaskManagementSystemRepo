@@ -28,7 +28,9 @@ public enum CommandType {
     ENTER_BOARD("Enter a board to go into."),
     SAVE("Saves to json"),
     SHOW_ENTERED_BOARD("Shows entered board"),
-    EXIT_BOARD("exits current entered board/team/person");
+    EXIT_BOARD("exits current entered board/team/person"),
+    ENTER_TEAM("Enters a team"),
+    EXIT_TEAM("exits a team");
 
     private final String description;
 

@@ -30,23 +30,26 @@ public class BoardBuilder extends EntityBuilder<Board> {
             return;
         }
         super.collectCommonAttributes();
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Type help to see all teams or enter team name (5-15 characters): ");
-        teamName = scanner.nextLine();
-        while (!isValidName(teamName) || !repository.getTeams().contains(repository.findTeamByName(teamName))) {
-            if (teamName.equalsIgnoreCase("help")) {
-                StringBuilder stringBuilder = new StringBuilder();
-                for (Team team : repository.getTeams()) {
-                    stringBuilder.append(team.toString());
-                }
-                System.out.println(stringBuilder);
-                System.out.println("Enter team name (5-15 characters): ");
-                teamName = scanner.nextLine();
-                continue;
-            }
-            System.out.print("Invalid team name. Enter name (5-15 characters): ");
+        if (repository.getCurrentTeam() != null) {
+            teamName = repository.getCurrentTeam().getName();
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Type help to see all teams or enter team name (5-15 characters): ");
             teamName = scanner.nextLine();
+            while (!isValidName(teamName) || !repository.getTeams().contains(repository.findTeamByName(teamName))) {
+                if (teamName.equalsIgnoreCase("help")) {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    for (Team team : repository.getTeams()) {
+                        stringBuilder.append(team.toString());
+                    }
+                    System.out.println(stringBuilder);
+                    System.out.println("Enter team name (5-15 characters): ");
+                    teamName = scanner.nextLine();
+                    continue;
+                }
+                System.out.print("Invalid team name. Enter name (5-15 characters): ");
+                teamName = scanner.nextLine();
+            }
         }
     }
 }

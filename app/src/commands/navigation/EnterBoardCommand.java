@@ -18,35 +18,38 @@ public class EnterBoardCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
+        if (repository.getBoards().isEmpty() || repository.getTeams().isEmpty()) {
+            return "Create a board and team first.";
+        }
+        String input;
         List<String> boards = new ArrayList<>();
         List<String> teams = new ArrayList<>();
-        for (Board board : repository.getBoards()) {
-            boards.add(board.getName());
-        }
         for (Team team : repository.getTeams()) {
             teams.add(team.getName());
         }
         Scanner scanner = new Scanner(System.in);
         Board oldBoard = repository.getCurrentBoard();
         Team oldTeam = repository.getCurrentTeam();
-        System.out.print("You need to enter a team first. Type help to see all options or enter a team name: ");
 
-
-        String input = scanner.nextLine();
-        while (repository.getCurrentTeam() == oldTeam) {
-            if (input.equalsIgnoreCase("help")) {
-                System.out.println(repository.getTeams());
-                System.out.print("Type help to see all options or enter a team name: ");
-                input = scanner.nextLine();
-            } else
-                if (teams.contains(input)) {
+        if (repository.getCurrentTeam() == null) {
+            System.out.print("You need to enter a team first. Type help to see all options or enter a team name: ");
+            input = scanner.nextLine();
+            while (repository.getCurrentTeam() == oldTeam) {
+                if (input.equalsIgnoreCase("help")) {
+                    System.out.println(repository.getTeams());
+                    System.out.print("Type help to see all options or enter a team name: ");
+                    input = scanner.nextLine();
+                } else if (teams.contains(input)) {
                     repository.setCurrentTeam(repository.findTeamByName(input));
                 } else {
                     System.out.println("Not a valid team. Type help to see all options or enter a team name: ");
                     input = scanner.nextLine();
                 }
+            }
         }
-
+        for (Board board : repository.getCurrentTeam().getBoards()) {
+            boards.add(board.getName());
+        }
 
 
         System.out.print("Type help to see all options or enter a board name to go into: ");

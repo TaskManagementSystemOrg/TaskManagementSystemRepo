@@ -12,7 +12,9 @@ import commands.modification.person.AssignTaskToAPerson;
 import commands.modification.person.UnassignTaskToAPerson;
 import commands.modification.task.*;
 import commands.navigation.EnterBoardCommand;
+import commands.navigation.EnterTeamCommand;
 import commands.navigation.ExitBoardCommand;
+import commands.navigation.ExitTeamCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
@@ -41,6 +43,8 @@ public class CommandFactoryImpl implements CommandFactory {
                     return new CreateNewFeedbackCommand(taskManagementSystemRepository);
                 case EXIT_BOARD:
                     return new ExitBoardCommand(taskManagementSystemRepository);
+                case CREATE_BOARD:
+                    return new CreateNewBoardInATeam(taskManagementSystemRepository);
                 default:
                     throw new IllegalArgumentException();
 
@@ -97,6 +101,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new UnassignTaskToAPerson(taskManagementSystemRepository);
             case ENTER_BOARD:
                 return new EnterBoardCommand(taskManagementSystemRepository);
+            case ENTER_TEAM:
+                return new EnterTeamCommand(taskManagementSystemRepository);
+                case EXIT_TEAM:
+                    return new ExitTeamCommand(taskManagementSystemRepository);
             case SAVE:
                 return new SaveCommand(taskManagementSystemRepository);
             default:
