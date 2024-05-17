@@ -35,6 +35,8 @@ public interface TaskManagementSystemRepository {
 
     Board getCurrentBoard();
     void setCurrentBoard(Board board);
+    Team getCurrentTeam();
+    void setCurrentTeam(Team team);
     void savePeopleToJson();
     void loadPeopleFromJson();
 }

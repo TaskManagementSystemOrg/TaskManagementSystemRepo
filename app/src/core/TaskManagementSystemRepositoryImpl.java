@@ -22,6 +22,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     private static int nextId;
 
     private Board currentBoard = null;
+    private Team currentTeam = null;
 
     private final List<Task> tasks;
     private final List<Team> teams;
@@ -195,6 +196,16 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public void setCurrentBoard(Board board) {
         this.currentBoard = board;
+    }
+
+    @Override
+    public Team getCurrentTeam() {
+        return this.currentTeam;
+    }
+
+    @Override
+    public void setCurrentTeam(Team team) {
+        this.currentTeam = team;
     }
 
     @Override
