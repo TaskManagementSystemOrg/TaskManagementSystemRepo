@@ -15,6 +15,7 @@ public class ExitBoardCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         taskManagementSystemRepository.setCurrentBoard(null);
+        taskManagementSystemRepository.setCurrentTeam(null);
         return "Exited board.";
     }
 }
