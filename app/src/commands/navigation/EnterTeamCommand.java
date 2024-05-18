@@ -31,7 +31,7 @@ public class EnterTeamCommand implements Command {
         }
         Scanner scanner = new Scanner(System.in);
         Team oldTeam = repository.getCurrentTeam();
-        System.out.print("You need to enter a team first. Type help to see all options or enter a team name: ");
+        System.out.print("Type help to see all options or enter a team name: ");
 
             input = scanner.nextLine();
             while (repository.getCurrentTeam() == oldTeam) {
@@ -47,6 +47,6 @@ public class EnterTeamCommand implements Command {
                 }
             }
 
-        return String.format("Entered team %s",repository.getCurrentBoard());
+        return String.format("Entered team %s",repository.getCurrentTeam());
     }
 }
