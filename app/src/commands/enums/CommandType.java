@@ -30,7 +30,10 @@ public enum CommandType {
     SHOW_ENTERED_BOARD("Shows entered board"),
     EXIT_BOARD("exits current entered board/team/person"),
     ENTER_TEAM("Enters a team"),
-    EXIT_TEAM("exits a team");
+    EXIT_TEAM("exits a team"),
+    NOT_LOGGED_IN_COMMAND("To display when not logged in"),
+    LOG_IN("logs you in"),
+    LOG_OUT("logs you out");
 
     private final String description;
 

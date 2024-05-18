@@ -23,6 +23,7 @@ public class TaskManagementSystemEngineImpl implements Engine {
     public void start() {
         taskManagementSystemRepository.loadPeopleFromJson();
         Scanner scanner = new Scanner(System.in);
+        System.out.println("You need to log in.");
         while (true) {
             try {
                 String inputLine = scanner.nextLine();

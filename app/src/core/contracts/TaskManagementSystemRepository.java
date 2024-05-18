@@ -1,5 +1,6 @@
 package core.contracts;
 
+import core.UserType;
 import models.BoardImpl;
 import models.contracts.*;
 import models.enums.*;
@@ -37,6 +38,8 @@ public interface TaskManagementSystemRepository {
     void setCurrentBoard(Board board);
     Team getCurrentTeam();
     void setCurrentTeam(Team team);
+    void setCurrentUser(UserType type);
+    UserType getCurrentUser();
     void savePeopleToJson();
     void loadPeopleFromJson();
 }

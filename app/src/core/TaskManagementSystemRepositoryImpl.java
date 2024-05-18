@@ -21,6 +21,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     private static int nextId;
 
+    private UserType currentUser = UserType.NOT_LOGGED_IN;
     private Board currentBoard = null;
     private Team currentTeam = null;
 
@@ -206,6 +207,16 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public void setCurrentTeam(Team team) {
         this.currentTeam = team;
+    }
+
+    @Override
+    public void setCurrentUser(UserType type) {
+        this.currentUser = type;
+    }
+
+    @Override
+    public UserType getCurrentUser() {
+        return this.currentUser;
     }
 
     @Override
