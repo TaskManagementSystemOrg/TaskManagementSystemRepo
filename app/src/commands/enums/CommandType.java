@@ -33,7 +33,12 @@ public enum CommandType {
     EXIT_TEAM("exits a team"),
     NOT_LOGGED_IN_COMMAND("To display when not logged in"),
     LOG_IN("logs you in"),
-    LOG_OUT("logs you out");
+    LOG_OUT("logs you out"),
+    SHOW_ALL_BUGS("shows all bugs"),
+    SHOW_ALL_FEEDBACK("shows all feedback"),
+    SHOW_ALL_STORIES("shows all stories"),
+    SHOW_ALL_TASKS("shows all tasks"),
+    SHOW_ALL_TASKS_WITH_ASSIGNEE("shows all task for an assignee");
 
     private final String description;
 

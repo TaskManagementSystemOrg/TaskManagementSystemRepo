@@ -7,6 +7,7 @@ import commands.contracts.Command;
 import commands.creation.*;
 import commands.enums.CommandType;
 import commands.listing.*;
+import commands.listing.complex.*;
 import commands.modification.person.AddPersonToTeamCommand;
 import commands.modification.person.AssignTaskToAPerson;
 import commands.modification.person.UnassignTaskToAPerson;
@@ -128,6 +129,16 @@ public class CommandFactoryImpl implements CommandFactory {
                         return new ShowAllPeopleCommand(taskManagementSystemRepository);
                     case SHOW_ALL_TEAMS:
                         return null;
+                    case SHOW_ALL_BUGS:
+                        return new ShowAllBugsCommand(taskManagementSystemRepository);
+                    case SHOW_ALL_FEEDBACK:
+                        return new ShowAllFeedbackCommand(taskManagementSystemRepository);
+                    case SHOW_ALL_STORIES:
+                        return new ShowAllStoriesCommand(taskManagementSystemRepository);
+                    case SHOW_ALL_TASKS:
+                        return new ShowAllTasksCommand(taskManagementSystemRepository);
+                    case SHOW_ALL_TASKS_WITH_ASSIGNEE:
+                        return new ShowTasksWithAssigneeCommand(taskManagementSystemRepository);
                     case LOG_OUT:
                         return new LogOutCommand(taskManagementSystemRepository);
                     default:
