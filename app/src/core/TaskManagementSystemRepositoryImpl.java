@@ -172,6 +172,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
                          BugStatus status, Person assignee, Board board) {
         Bug bug = new BugImpl(++nextId, title, description, stepsToReproduce, priority, severity, status, assignee);
         findBoardByName(board.getName()).addTask(bug);
+        this.tasks.add(bug);
         return bug;
     }
 
@@ -179,6 +180,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     public Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee, Board board) {
         Story story = new StoryImpl(++nextId, title, description, priority, size, status, assignee);
         findBoardByName(board.getName()).addTask(story);
+        this.tasks.add(story);
         return story;
     }
 
@@ -186,6 +188,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     public Feedback createFeedback(String title, String description, int rating, FeedbackStatus status, Board board) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating, status);
         findBoardByName(board.getName()).addTask(feedback);
+        this.tasks.add(feedback);
         return feedback;
     }
 

@@ -58,6 +58,11 @@ public abstract class TaskImpl implements Task {
     }
 
     @Override
+    public String toString() {
+        return String.format("Title: %s, Description: %s", getTitle(), getDescription());
+    }
+
+    @Override
     public void addComment(Comment commentToAdd) {
         comments.add(commentToAdd);
     }

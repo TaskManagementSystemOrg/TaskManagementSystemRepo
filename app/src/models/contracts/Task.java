@@ -1,6 +1,6 @@
 package models.contracts;
 
-public interface Task {
+public interface Task extends Printable{
     int getId();
     String getTitle();
     String getDescription();
