@@ -5,9 +5,9 @@ import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ShowBoardActivityCommand implements Command {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
     protected final TaskManagementSystemRepository taskManagementSystemRepository;
 
     public ShowBoardActivityCommand(TaskManagementSystemRepository taskManagementSystemRepository) {
@@ -16,13 +16,33 @@ public class ShowBoardActivityCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
+        Scanner scanner = new Scanner(System.in);
+        String input = null;
         StringBuilder stringBuilder = new StringBuilder();
-        String name = parameters.get(0);
-        List<String> activity = taskManagementSystemRepository.findBoardByName(name).getActivity();
-        for (String activity1 : activity) {
-            stringBuilder.append(activity1);
+        if (taskManagementSystemRepository.getCurrentBoard() != null) {
+            for (String activity : taskManagementSystemRepository.getCurrentBoard().getActivity()) {
+                stringBuilder.append(activity);
+                return stringBuilder.toString();
+            }
+        } else {
+            System.out.println("Type help to see all options or enter board name:");
+            input = scanner.nextLine();
+            while (stringBuilder.isEmpty()) {
+                if (input.equalsIgnoreCase("help")) {
+                    System.out.println(taskManagementSystemRepository.getBoards());
+                    System.out.println("Type help to see all options or enter board name:");
+                    input = scanner.nextLine();
+                } else if (taskManagementSystemRepository.findBoardByName(input) != null) {
+                    for (String activity : taskManagementSystemRepository.findBoardByName(input).getActivity()) {
+                        stringBuilder.append(activity);
+                        return stringBuilder.toString();
+                    }
+                } else {
+                    System.out.println("Not a valid board. Try again:");
+                    input = scanner.nextLine();
+                }
+            }
         }
-        return stringBuilder.toString();
+        return "Done";
     }
 }
