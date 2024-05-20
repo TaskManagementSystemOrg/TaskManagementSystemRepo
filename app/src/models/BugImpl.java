@@ -6,6 +6,7 @@ import models.contracts.Person;
 import models.enums.BugStatus;
 import models.enums.Priority;
 import models.enums.Severity;
+import models.enums.TaskType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,12 +20,13 @@ public class BugImpl extends TaskImpl implements Bug {
 
     public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority,
                    Severity severity, BugStatus status, Person assignee) {
-        super(id, title, description);
+        super(id, title, description, TaskType.BUG);
         setSteps(stepsToReproduce);
         setPriority(priority);
         setSeverity(severity);
         setStatus(status);
         setAssignee(assignee);
+
     }
 
     private void setSteps(List<String> stepsToReproduce) {

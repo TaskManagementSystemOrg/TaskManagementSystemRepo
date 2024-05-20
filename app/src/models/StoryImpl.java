@@ -1,10 +1,12 @@
 package models;
 
+import core.UserType;
 import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;
 import models.enums.Size;
 import models.enums.StoryStatus;
+import models.enums.TaskType;
 
 public class StoryImpl extends TaskImpl implements Story {
     private Priority priority;
@@ -13,7 +15,7 @@ public class StoryImpl extends TaskImpl implements Story {
     private Person assignee;
 
     public StoryImpl(int id, String title, String description, Priority priority, Size size, StoryStatus status, Person assignee) {
-        super(id, title, description);
+        super(id, title, description, TaskType.STORY);
         setPriority(priority);
         setSize(size);
         setStatus(status);

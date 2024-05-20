@@ -3,6 +3,7 @@ package models;
 import Utils.ValidationHelpers;
 import models.contracts.Comment;
 import models.contracts.Task;
+import models.enums.TaskType;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,13 +21,15 @@ public abstract class TaskImpl implements Task {
     private String description;
     private List<String> history;
     private List<Comment> comments;
+    private TaskType type;
 
-    public TaskImpl(int id, String title, String description) {
+    public TaskImpl(int id, String title, String description, TaskType taskType) {
         this.id = id;
         setTitle(title);
         setDescription(description);
         this.history = new ArrayList<>();
         this.comments = new ArrayList<>();
+        this.type = taskType;
     }
 
     private void setTitle(String title) {

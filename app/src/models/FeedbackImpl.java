@@ -2,13 +2,14 @@ package models;
 
 import models.contracts.Feedback;
 import models.enums.FeedbackStatus;
+import models.enums.TaskType;
 
 public class FeedbackImpl extends TaskImpl implements Feedback {
     private int rating;
     private FeedbackStatus status;
 
     public FeedbackImpl(int id, String title, String description, int rating, FeedbackStatus status) {
-        super(id, title, description);
+        super(id, title, description, TaskType.FEEDBACK);
         setRating(rating);
         setStatus(status);
     }
