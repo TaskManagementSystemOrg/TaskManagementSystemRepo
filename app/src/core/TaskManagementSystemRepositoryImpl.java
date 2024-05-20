@@ -148,6 +148,9 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Person createPerson(String name) {
+        if (people.contains(findPersonByName(name))) {
+            return null;
+        }
         Person person = new PersonImpl(name);
         this.people.add(person);
         return person;
@@ -155,6 +158,9 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Team createTeam(String name) {
+        if (tasks.contains(findTaskByName(name))) {
+            return null;
+        }
         Team team = new TeamImpl(name);
         this.teams.add(team);
         return team;
