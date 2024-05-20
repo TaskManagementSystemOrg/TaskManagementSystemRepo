@@ -115,6 +115,8 @@ public class CommandFactoryImpl implements CommandFactory {
 
     private Command handleAdminUserCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
         switch (commandType) {
+            case SHOW_BOARD_ACTIVITY:
+                return new ShowBoardActivityCommand(taskManagementSystemRepository);
             case SHOW_ALL_PEOPLE:
                 return new ShowAllPeopleCommand(taskManagementSystemRepository);
             case SHOW_ALL_TEAMS:

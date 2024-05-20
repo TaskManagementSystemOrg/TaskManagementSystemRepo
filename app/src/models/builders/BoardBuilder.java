@@ -29,11 +29,18 @@ public class BoardBuilder extends EntityBuilder<Board> {
             System.out.println("No teams created.");
             return;
         }
-        super.collectCommonAttributes();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter name (5-15 characters): ");
+        name = scanner.nextLine();
+        while (!isValidName(name) || repository.getBoards().contains(repository.findBoardByName(name))) {
+            System.out.print("Invalid name. Enter name (5-15 characters): ");
+            name = scanner.nextLine();
+        }
+
         if (repository.getCurrentTeam() != null) {
             teamName = repository.getCurrentTeam().getName();
         } else {
-            Scanner scanner = new Scanner(System.in);
             System.out.print("Type help to see all teams or enter team name (5-15 characters): ");
             teamName = scanner.nextLine();
             while (!isValidName(teamName) || !repository.getTeams().contains(repository.findTeamByName(teamName))) {
