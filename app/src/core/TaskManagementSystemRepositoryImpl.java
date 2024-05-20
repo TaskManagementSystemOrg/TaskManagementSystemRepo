@@ -158,7 +158,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Team createTeam(String name) {
-        if (tasks.contains(findTaskByName(name))) {
+        if (teams.contains(findTeamByName(name))) {
             return null;
         }
         Team team = new TeamImpl(name);
