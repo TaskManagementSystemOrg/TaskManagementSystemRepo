@@ -19,9 +19,6 @@ public class PersonDeserializer implements JsonDeserializer<PersonImpl> {
         String name = jsonObject.get("name").getAsString();
         PersonImpl person = new PersonImpl(name);
 
-        // Deserialize tasks
-        JsonArray tasksArray = jsonObject.getAsJsonArray("tasks");
-
         JsonArray activityArray = jsonObject.getAsJsonArray("activityHistory");
         List<String> activityHistory = new ArrayList<>();
         for (JsonElement activityElement : activityArray) {
