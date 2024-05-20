@@ -19,7 +19,6 @@ public class AssignTaskToAPerson implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         String task = parameters.get(0);
         String personName = parameters.get(1);
-        taskManagementSystemRepository.findPersonByName(personName).addTask(taskManagementSystemRepository.findTaskByName(task));
         return String.format("Assigned %s to %s", task, personName);
     }
 }

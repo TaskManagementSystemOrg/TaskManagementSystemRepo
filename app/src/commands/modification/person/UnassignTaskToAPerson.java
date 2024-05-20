@@ -19,7 +19,6 @@ public class UnassignTaskToAPerson implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         String task = parameters.get(0);
         String personName = parameters.get(1);
-        taskManagementSystemRepository.findPersonByName(personName).removeTask(taskManagementSystemRepository.findTaskByName(task));
         return String.format("Unassigned %s from %s", task, personName);
     }
 }

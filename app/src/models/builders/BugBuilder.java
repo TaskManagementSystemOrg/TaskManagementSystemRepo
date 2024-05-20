@@ -59,7 +59,6 @@ public class BugBuilder extends TaskBuilder<Bug> {
         status = BugStatus.ACTIVE;  // Default status
 
         Bug bug = repository.createBug(title, description, stepsToReproduce, priority, severity, status, assignee, board);
-        assignee.addTask(bug);
         return bug;
     }
 

@@ -12,11 +12,7 @@ public class PersonSerializer implements JsonSerializer<PersonImpl> {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("class", person.getClass().getName());
         jsonObject.addProperty("name",person.getName());
-        JsonArray tasksArray = new JsonArray();
-        for (Task task : person.getTasks()) {
-            tasksArray.add(context.serialize(task));
-        }
-        jsonObject.add("tasks", tasksArray);
+
         JsonArray activityArray = new JsonArray();
         for (String activity : person.getActivity()) {
             activityArray.add(new JsonPrimitive(activity));
