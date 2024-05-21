@@ -9,8 +9,10 @@ import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
 import models.deserializers.PersonDeserializer;
+import models.deserializers.TeamDeserializer;
 import models.enums.*;
 import models.serializers.PersonSerializer;
+import models.serializers.TeamSerializer;
 
 import java.io.*;
 import java.lang.reflect.Type;
@@ -28,7 +30,8 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     private final List<Task> tasks;
     private final List<Team> teams;
     private final List<Person> people;
-    private static final String DATA_FILE = "data.json";
+    private static final String PEOPLE_DATA_FILE = "people.json";
+    private static final String TEAMS_DATA_FILE = "teams.json";
 
 
     public TaskManagementSystemRepositoryImpl() {
@@ -234,19 +237,32 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
                 .registerTypeAdapter(PersonImpl.class, new PersonSerializer())
                 .create();
 
-        try (FileWriter writer = new FileWriter(DATA_FILE)) {
+        try (FileWriter writer = new FileWriter(PEOPLE_DATA_FILE)) {
             gson.toJson(people, writer);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void saveTeamsToJSon() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(TeamImpl.class, new TeamSerializer())
+                .create();
+        try (FileWriter writer = new FileWriter(TEAMS_DATA_FILE)) {
+            gson.toJson(teams, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public void loadPeopleFromJson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Person.class, new PersonDeserializer());
         Gson gson = gsonBuilder.create();
 
-        File file = new File(DATA_FILE);
+        File file = new File(PEOPLE_DATA_FILE);
 
         if (!file.exists()) {
             try {
@@ -262,6 +278,34 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
             List<Person> loadedPeople = gson.fromJson(reader, personListType);
             if (loadedPeople != null) {
                 this.people.addAll(loadedPeople);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadTeamsToJSon() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Team.class, new TeamDeserializer());
+        Gson gson = gsonBuilder.create();
+
+        File file = new File(TEAMS_DATA_FILE);
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            Type team = new TypeToken<List<Team>>() {}.getType();
+            List<Team> loadedTeams = gson.fromJson(reader, team);
+            if (loadedTeams != null) {
+                this.teams.addAll(loadedTeams);
             }
         } catch (IOException e) {
             e.printStackTrace();

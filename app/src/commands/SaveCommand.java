@@ -14,6 +14,7 @@ public class SaveCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         taskManagementSystemRepository.savePeopleToJson();
-        return "Persons saved to JSON successfully!";
+        taskManagementSystemRepository.saveTeamsToJSon();
+        return "saved to JSON successfully!";
     }
 }

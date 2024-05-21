@@ -41,5 +41,7 @@ public interface TaskManagementSystemRepository {
     void setCurrentUser(UserType type);
     UserType getCurrentUser();
     void savePeopleToJson();
+    void saveTeamsToJSon();
     void loadPeopleFromJson();
+    void loadTeamsToJSon();
 }
