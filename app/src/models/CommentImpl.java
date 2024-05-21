@@ -28,6 +28,6 @@ public class CommentImpl implements Comment {
 
     @Override
     public String toString() {
-        return String.format("Author: %s, Content: %s", getAuthor(), getContent());
+        return String.format("Author's %s, Content: %s", getAuthor(), getContent());
     }
 }
