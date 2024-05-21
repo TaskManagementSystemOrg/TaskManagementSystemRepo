@@ -41,6 +41,8 @@ public interface TaskManagementSystemRepository {
     UserType getCurrentUser();
     void savePeopleToJson();
     void saveTeamsToJSon();
+    void saveTasksToJson();
     void loadPeopleFromJson();
     void loadTeamsToJSon();
+    void loadTasksToJson();
 }

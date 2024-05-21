@@ -8,9 +8,11 @@ import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
 import models.deserializers.PersonDeserializer;
+import models.deserializers.TaskDeserializer;
 import models.deserializers.TeamDeserializer;
 import models.enums.*;
 import models.serializers.PersonSerializer;
+import models.serializers.TaskSerializer;
 import models.serializers.TeamSerializer;
 
 import java.io.*;
@@ -31,6 +33,8 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     private final List<Person> people;
     private static final String PEOPLE_DATA_FILE = "people.json";
     private static final String TEAMS_DATA_FILE = "teams.json";
+    private static final String TASK_DATA_FILE = "tasks.json";
+
 
 
     public TaskManagementSystemRepositoryImpl() {
@@ -256,6 +260,18 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
 
     @Override
+    public void saveTasksToJson() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(TaskImpl.class, new TaskSerializer())
+                .create();
+        try (FileWriter writer = new FileWriter(TASK_DATA_FILE)) {
+            gson.toJson(tasks, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
     public void loadPeopleFromJson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Person.class, new PersonDeserializer());
@@ -305,6 +321,34 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
             List<Team> loadedTeams = gson.fromJson(reader, team);
             if (loadedTeams != null) {
                 this.teams.addAll(loadedTeams);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadTasksToJson() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(Task.class, new TaskDeserializer())
+                .create();
+        File file = new File(TASK_DATA_FILE);
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            Type task = new TypeToken<List<Task>>() {}.getType();
+            List<Task> loadedTasks = gson.fromJson(reader, task);
+
+            if (loadedTasks != null) {
+                this.tasks.addAll(loadedTasks);
             }
         } catch (IOException e) {
             e.printStackTrace();

@@ -5,6 +5,7 @@ import models.contracts.Comment;
 import models.contracts.Task;
 import models.enums.TaskType;
 
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,6 +60,8 @@ public abstract class TaskImpl implements Task {
     public List<Comment> getComments() {
         return new ArrayList<>(comments);
     }
+    public TaskType getType(){return this.type;}
+
 
     @Override
     public String toString() {

@@ -15,6 +15,7 @@ public class SaveCommand implements Command {
     public String execute(List<String> parameters) {
         taskManagementSystemRepository.savePeopleToJson();
         taskManagementSystemRepository.saveTeamsToJSon();
+        taskManagementSystemRepository.saveTasksToJson();
         return "saved to JSON successfully!";
     }
 }
