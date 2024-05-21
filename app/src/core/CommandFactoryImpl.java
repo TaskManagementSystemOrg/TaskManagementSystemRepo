@@ -3,6 +3,7 @@ package core;
 import Utils.ParsingHelpers;
 import com.google.gson.Gson;
 import commands.SaveCommand;
+import commands.comments.AddCommentCommand;
 import commands.contracts.Command;
 import commands.creation.*;
 import commands.enums.CommandType;
@@ -77,6 +78,10 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new CreateNewStoryCommand(taskManagementSystemRepository);
             case CREATE_FEEDBACK:
                 return new CreateNewFeedbackCommand(taskManagementSystemRepository);
+            case ADD_COMMENT:
+                return new AddCommentCommand(taskManagementSystemRepository);
+            case SHOW_COMMENTS:
+                return new ShowCommentsCommand(taskManagementSystemRepository);
             case EXIT_BOARD:
                 return new ExitBoardCommand(taskManagementSystemRepository);
             case LOG_OUT:
@@ -117,6 +122,8 @@ public class CommandFactoryImpl implements CommandFactory {
         switch (commandType) {
             case SHOW_BOARD_ACTIVITY:
                 return new ShowBoardActivityCommand(taskManagementSystemRepository);
+            case SHOW_COMMENTS:
+                return new ShowCommentsCommand(taskManagementSystemRepository);
             case SHOW_ALL_PEOPLE:
                 return new ShowAllPeopleCommand(taskManagementSystemRepository);
             case SHOW_ALL_TEAMS:
@@ -181,6 +188,8 @@ public class CommandFactoryImpl implements CommandFactory {
                 return new ExitBoardCommand(taskManagementSystemRepository);
             case EXIT_TEAM:
                 return new ExitTeamCommand(taskManagementSystemRepository);
+            case ADD_COMMENT:
+                return new AddCommentCommand(taskManagementSystemRepository);
             case SAVE:
                 return new SaveCommand(taskManagementSystemRepository);
             case LOG_OUT:

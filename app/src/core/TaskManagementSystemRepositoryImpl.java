@@ -2,9 +2,8 @@ package core;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import commands.enums.UserType;
 import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;

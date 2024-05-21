@@ -1,4 +1,4 @@
-package core;
+package commands.enums;
 
 public enum UserType {
     ADMIN,

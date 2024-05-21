@@ -1,6 +1,5 @@
 package models;
 
-import core.UserType;
 import models.contracts.Person;
 import models.contracts.Story;
 import models.enums.Priority;

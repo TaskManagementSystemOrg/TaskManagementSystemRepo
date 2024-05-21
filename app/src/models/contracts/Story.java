@@ -13,8 +13,6 @@ public interface Story extends Task{
     Size getSize();
     StoryStatus getStatus();
     Person getAssignee();
-    List<Comment> getComments();
-    List<String> getHistory();
     void setPriority(Priority priority);
     void setSize(Size size);
     void setStatus(StoryStatus status);
