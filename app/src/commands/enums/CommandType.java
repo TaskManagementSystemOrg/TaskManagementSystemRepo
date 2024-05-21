@@ -38,7 +38,10 @@ public enum CommandType {
     SHOW_ALL_FEEDBACK("shows all feedback"),
     SHOW_ALL_STORIES("shows all stories"),
     SHOW_ALL_TASKS("shows all tasks"),
-    SHOW_ALL_TASKS_WITH_ASSIGNEE("shows all task for an assignee");
+    SHOW_ALL_TASKS_WITH_ASSIGNEE("shows all task for an assignee"),
+    SHOW_COMMENTS("show commnets for a given task"),
+    ADD_COMMENT("adds comment"),
+    REMOVE_COMMENT("removes comment");
 
     private final String description;
 

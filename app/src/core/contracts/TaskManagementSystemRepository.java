@@ -1,7 +1,6 @@
 package core.contracts;
 
-import core.UserType;
-import models.BoardImpl;
+import commands.enums.UserType;
 import models.contracts.*;
 import models.enums.*;
 

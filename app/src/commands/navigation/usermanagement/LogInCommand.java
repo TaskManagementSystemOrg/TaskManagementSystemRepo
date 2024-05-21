@@ -1,7 +1,7 @@
 package commands.navigation.usermanagement;
 
 import commands.contracts.Command;
-import core.UserType;
+import commands.enums.UserType;
 import core.contracts.TaskManagementSystemRepository;
 
 import java.util.List;
