@@ -7,10 +7,12 @@ import commands.enums.UserType;
 import core.contracts.TaskManagementSystemRepository;
 import models.*;
 import models.contracts.*;
+import models.deserializers.BoardDeserializer;
 import models.deserializers.PersonDeserializer;
 import models.deserializers.TaskDeserializer;
 import models.deserializers.TeamDeserializer;
 import models.enums.*;
+import models.serializers.BoardSerializer;
 import models.serializers.PersonSerializer;
 import models.serializers.TaskSerializer;
 import models.serializers.TeamSerializer;
@@ -35,6 +37,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     private static final String PEOPLE_DATA_FILE = "people.json";
     private static final String TEAMS_DATA_FILE = "teams.json";
     private static final String TASK_DATA_FILE = "tasks.json";
+    private static final String BOARDS_DATA_FILE = "boards.json";
 
 
 
@@ -293,6 +296,19 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
 
     @Override
+    public void saveBoardsToJson() {
+        Gson gson = new GsonBuilder()
+                .registerTypeAdapter(BoardImpl.class, new BoardSerializer())
+                .create();
+        try (FileWriter writer = new FileWriter(BOARDS_DATA_FILE)) {
+            gson.toJson(boards, writer);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
     public void loadPeopleFromJson() {
         GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.registerTypeAdapter(Person.class, new PersonDeserializer());
@@ -370,6 +386,34 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
             if (loadedTasks != null) {
                 this.tasks.addAll(loadedTasks);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void loadBoardsFromJson() {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.registerTypeAdapter(Board.class, new BoardDeserializer());
+        Gson gson = gsonBuilder.create();
+
+        File file = new File(BOARDS_DATA_FILE);
+
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return;
+            }
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            Type board = new TypeToken<List<Board>>() {}.getType();
+            List<Board> loadedBoards = gson.fromJson(reader, board);
+            if (loadedBoards != null) {
+                this.boards.addAll(loadedBoards);
             }
         } catch (IOException e) {
             e.printStackTrace();

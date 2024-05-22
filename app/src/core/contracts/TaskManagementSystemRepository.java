@@ -43,7 +43,9 @@ public interface TaskManagementSystemRepository {
     void savePeopleToJson();
     void saveTeamsToJSon();
     void saveTasksToJson();
+    void saveBoardsToJson();
     void loadPeopleFromJson();
     void loadTeamsToJSon();
     void loadTasksToJson();
+    void loadBoardsFromJson();
 }

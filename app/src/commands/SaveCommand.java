@@ -16,6 +16,7 @@ public class SaveCommand implements Command {
         taskManagementSystemRepository.savePeopleToJson();
         taskManagementSystemRepository.saveTeamsToJSon();
         taskManagementSystemRepository.saveTasksToJson();
+        taskManagementSystemRepository.saveBoardsToJson();
         return "saved to JSON successfully!";
     }
 }
