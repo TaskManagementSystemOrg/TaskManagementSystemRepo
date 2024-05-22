@@ -31,6 +31,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     private final List<Task> tasks;
     private final List<Team> teams;
     private final List<Person> people;
+    private final List<Board> boards;
     private static final String PEOPLE_DATA_FILE = "people.json";
     private static final String TEAMS_DATA_FILE = "teams.json";
     private static final String TASK_DATA_FILE = "tasks.json";
@@ -41,6 +42,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         this.tasks = new ArrayList<>();
         this.teams = new ArrayList<>();
         this.people = new ArrayList<>();
+        this.boards = new ArrayList<>();
         nextId = 0;
     }
 
@@ -54,21 +56,27 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     }
     @Override
     public List<Person> getMembers(Team team) {
-        return team.getMembers();
+        List<Person> members = new ArrayList<>();
+        for(String member : team.getMembers())
+        {
+            members.add(findPersonByName(member));
+        }
+        return members;
     }
 
     @Override
     public List<Board> getBoards(Team team) {
-        return team.getBoards();
+        List<Board> boards = new ArrayList<>();
+        for(String board : team.getBoards())
+        {
+            boards.add(findBoardByName(board));
+        }
+        return boards;
     }
 
     @Override
     public List<Board> getBoards() {
-        List<Board> boards = new ArrayList<>();
-        for (Team team : getTeams()) {
-            boards.addAll(getBoards(team));
-        }
-        return boards;
+        return new ArrayList<>(boards);
     }
 
     @Override
@@ -94,7 +102,8 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public List<Task> getTasks(Team team) {
         List<Task> tasks = new ArrayList<>();
-        for (Board board : team.getBoards()) {
+        for (String boardName : team.getBoards()) {
+            Board board = findBoardByName(boardName);
             tasks.addAll(board.getTasks());
         }
         return tasks;
@@ -137,13 +146,11 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Board findBoardByName(String name) {
-        for (Team team : getTeams()) {
-            for (Board board1 : team.getBoards()) {
+            for (Board board1 : boards) {
                 if (board1.getName().equalsIgnoreCase(name)) {
                     return board1;
                 }
             }
-        }
         return null;
     }
 
@@ -175,7 +182,8 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public Board createBoardInTeam(String boardName, String teamName) {
         Board board = new BoardImpl(boardName);
-        findTeamByName(teamName).addBoard(board);
+        findTeamByName(teamName).addBoard(board.getName());
+        boards.add(board);
         return board;
     }
 

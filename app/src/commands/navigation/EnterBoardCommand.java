@@ -47,7 +47,8 @@ public class EnterBoardCommand implements Command {
                 }
             }
         }
-        for (Board board : repository.getCurrentTeam().getBoards()) {
+        for (String boardName : repository.getCurrentTeam().getBoards()) {
+            Board board = repository.findBoardByName(boardName);
             boards.add(board.getName());
         }
 

@@ -19,7 +19,7 @@ public class AddPersonToTeamCommand implements Command {
         ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
         String personName = parameters.get(0);
         String teamName = parameters.get(1);
-        taskManagementSystemRepository.findTeamByName(teamName).addMember(taskManagementSystemRepository.findPersonByName(personName));
+        taskManagementSystemRepository.findTeamByName(teamName).addMember(taskManagementSystemRepository.findPersonByName(personName).getName());
         return String.format("Added %s to %s", personName, teamName);
     }
 }

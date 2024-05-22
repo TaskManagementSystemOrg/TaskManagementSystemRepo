@@ -4,14 +4,14 @@ import java.lang.reflect.Member;
 import java.util.List;
 
 public interface Team extends Printable{
-    List<Person> getMembers();
+    List<String> getMembers();
     String getName();
-    List<Board> getBoards();
+    List<String> getBoards();
     List<String> getActivity();
 
-    void addMember(Person memberToAdd);
-    void  removeMember(Person memberToRemove);
-    void addBoard(Board boardToAdd);
-    void  removeBoard(Board boardToRemove);
+    void addMember(String memberToAdd);
+    void  removeMember(String memberToRemove);
+    void addBoard(String boardToAdd);
+    void  removeBoard(String boardToRemove);
 
 }
