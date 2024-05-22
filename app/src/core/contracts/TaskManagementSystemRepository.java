@@ -20,6 +20,7 @@ public interface TaskManagementSystemRepository {
     List<Task> getTasks(Board board);
 
     Task findTaskByName(String name);
+    Task findTaskById(int id);
     Person findPersonByName(String name);
     Team findTeamByName(String name);
     Board findBoardByName(String name);

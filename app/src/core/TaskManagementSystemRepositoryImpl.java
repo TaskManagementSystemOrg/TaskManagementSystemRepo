@@ -104,20 +104,33 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
         List<Task> tasks = new ArrayList<>();
         for (String boardName : team.getBoards()) {
             Board board = findBoardByName(boardName);
-            tasks.addAll(board.getTasks());
+            tasks.addAll(getTasks(board));
         }
         return tasks;
     }
 
     @Override
     public List<Task> getTasks(Board board) {
-        return new ArrayList<>(board.getTasks());
+        List<Task> boardTasks = new ArrayList<>();
+        for (int taskId : board.getTasks()) {
+            boardTasks.add(findTaskById(taskId));
+        }
+        return boardTasks;
     }
 
     @Override
     public Task findTaskByName(String name) {
         for (Task task : getTasks()) {
             if (task.getTitle().equalsIgnoreCase(name)) {
+                return task;
+            }
+        }
+        return null;
+    }
+    @Override
+    public Task findTaskById(int Id) {
+        for (Task task : getTasks()) {
+            if (task.getId() == Id) {
                 return task;
             }
         }
@@ -191,7 +204,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     public Bug createBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity,
                          BugStatus status, Person assignee, Board board) {
         Bug bug = new BugImpl(++nextId, title, description, stepsToReproduce, priority, severity, status, assignee.getName());
-        findBoardByName(board.getName()).addTask(bug);
+        findBoardByName(board.getName()).addTask(bug.getId());
         this.tasks.add(bug);
         return bug;
     }
@@ -199,7 +212,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee, Board board) {
         Story story = new StoryImpl(++nextId, title, description, priority, size, status, assignee.getName());
-        findBoardByName(board.getName()).addTask(story);
+        findBoardByName(board.getName()).addTask(story.getId());
         this.tasks.add(story);
         return story;
     }
@@ -207,7 +220,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public Feedback createFeedback(String title, String description, int rating, FeedbackStatus status, Board board) {
         Feedback feedback = new FeedbackImpl(++nextId, title, description, rating, status);
-        findBoardByName(board.getName()).addTask(feedback);
+        findBoardByName(board.getName()).addTask(feedback.getId());
         this.tasks.add(feedback);
         return feedback;
     }
