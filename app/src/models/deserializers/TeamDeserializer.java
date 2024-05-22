@@ -13,6 +13,15 @@ public class TeamDeserializer implements JsonDeserializer<TeamImpl> {
         JsonObject jsonObject = jsonElement.getAsJsonObject();
         String name = jsonObject.get("name").getAsString();
         TeamImpl team = new TeamImpl(name);
+        for(JsonElement member : jsonObject.getAsJsonArray("members"))
+        {
+            team.addMember(member.getAsString());
+        }
+        for(JsonElement board : jsonObject.getAsJsonArray("boards"))
+        {
+            team.addBoard(board.getAsString());
+        }
+
         return team;
     }
 }

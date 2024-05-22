@@ -55,7 +55,7 @@ public class TeamImpl implements Team {
     @Override
     public void addMember(String memberToAdd) {
         members.add(memberToAdd);
-        activityHistory.add(String.format("Member %s added to %s on %s", memberToAdd, LocalDateTime.now().format(FormattingHelpers.formatter)));
+        //activityHistory.add(String.format("Member %s added to %s on %s", memberToAdd, LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
@@ -67,7 +67,7 @@ public class TeamImpl implements Team {
     @Override
     public void addBoard(String boardToAdd) {
         boards.add(boardToAdd);
-        activityHistory.add(String.format("Board %s added to %s on %s", boardToAdd, getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
+        //activityHistory.add(String.format("Board %s added to %s on %s", boardToAdd, getName(), LocalDateTime.now().format(FormattingHelpers.formatter)));
     }
 
     @Override
