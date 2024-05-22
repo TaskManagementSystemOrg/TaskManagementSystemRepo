@@ -34,6 +34,9 @@ public class ShowAllFeedbackCommand implements Command {
                 feedbacks.add((Feedback) task);
             }
         }
+        if (feedbacks.isEmpty()) {
+            return "====================\nNo feedback created yet.\n====================";
+        }
 
         System.out.println("Filter by status (New/Unscheduled/Scheduled/Done) or enter empty line: ");
         input = scanner.nextLine();

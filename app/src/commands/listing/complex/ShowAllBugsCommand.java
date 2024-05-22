@@ -31,6 +31,9 @@ public class ShowAllBugsCommand implements Command {
                 bugs.add((Bug) task);
             }
         }
+        if (bugs.isEmpty()) {
+            return "====================\nNo bugs created yet.\n====================";
+        }
 
         System.out.println("Filter by status (Active/Done) or enter an empty line: ");
         input = scanner.nextLine();
@@ -110,9 +113,10 @@ public class ShowAllBugsCommand implements Command {
                         stringBuilder.append(String.format(" Severity: %s", bug.getSeverity()));
                         break;
                 }
+                stringBuilder.append("\n");
             }
         }
-        stringBuilder.append("\n====================");
+        stringBuilder.append("====================");
         sortType = 0;
         return stringBuilder.toString();
     }
