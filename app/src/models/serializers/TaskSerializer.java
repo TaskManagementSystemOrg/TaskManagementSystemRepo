@@ -26,13 +26,13 @@ public class TaskSerializer implements JsonSerializer<TaskImpl> {
             jsonObject.addProperty("severity", bug.getSeverity().toString());
             jsonObject.addProperty("status", bug.getStatus().toString());
             jsonObject.add("stepsToReproduce", context.serialize(bug.getStepsToReproduce()));
-            //jsonObject.add("assignee", context.serialize(bug.getAssignee()));
+            jsonObject.addProperty("assignee", bug.getAssignee());
         } else if (task instanceof StoryImpl) {
             StoryImpl story = (StoryImpl) task;
             jsonObject.addProperty("priority", story.getPriority().toString());
             jsonObject.addProperty("size", story.getSize().toString());
             jsonObject.addProperty("status", story.getStatus().toString());
-            //jsonObject.add("assignee", context.serialize(story.getAssignee()));
+            jsonObject.addProperty("assignee", story.getAssignee());
         } else if (task instanceof FeedbackImpl) {
             FeedbackImpl feedback = (FeedbackImpl) task;
             jsonObject.addProperty("rating", feedback.getRating());

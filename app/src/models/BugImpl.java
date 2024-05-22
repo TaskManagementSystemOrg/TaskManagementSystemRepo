@@ -16,10 +16,10 @@ public class BugImpl extends TaskImpl implements Bug {
     private Priority priority;
     private Severity severity;
     private BugStatus status;
-    private Person assignee;
+    private String assignee;
 
     public BugImpl(int id, String title, String description, List<String> stepsToReproduce, Priority priority,
-                   Severity severity, BugStatus status, Person assignee) {
+                   Severity severity, BugStatus status, String assignee) {
         super(id, title, description, TaskType.BUG);
         setSteps(stepsToReproduce);
         setPriority(priority);
@@ -44,7 +44,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public void setStatus(BugStatus status) {
         this.status = status;
     }
-    private void setAssignee(Person assignee) {
+    private void setAssignee(String assignee) {
         this.assignee = assignee;
     }
 
@@ -65,7 +65,7 @@ public class BugImpl extends TaskImpl implements Bug {
         return this.status;
     }
     @Override
-    public Person getAssignee() {
+    public String getAssignee() {
         return this.assignee;
     }
 }

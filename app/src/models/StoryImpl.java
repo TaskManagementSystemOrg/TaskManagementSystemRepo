@@ -11,9 +11,9 @@ public class StoryImpl extends TaskImpl implements Story {
     private Priority priority;
     private Size size;
     private StoryStatus status;
-    private Person assignee;
+    private String assignee;
 
-    public StoryImpl(int id, String title, String description, Priority priority, Size size, StoryStatus status, Person assignee) {
+    public StoryImpl(int id, String title, String description, Priority priority, Size size, StoryStatus status, String assignee) {
         super(id, title, description, TaskType.STORY);
         setPriority(priority);
         setSize(size);
@@ -32,7 +32,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public void setStatus(StoryStatus status) {
         this.status = status;
     }
-    private void setAssignee(Person assignee) {
+    private void setAssignee(String assignee) {
         this.assignee = assignee;
     }
 
@@ -49,7 +49,7 @@ public class StoryImpl extends TaskImpl implements Story {
         return this.status;
     }
     @Override
-    public Person getAssignee() {
+    public String getAssignee() {
         return this.assignee;
     }
 }

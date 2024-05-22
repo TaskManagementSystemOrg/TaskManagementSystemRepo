@@ -11,7 +11,7 @@ public interface Bug extends Task{
     Priority getPriority();
     Severity getSeverity();
     BugStatus getStatus();
-    Person getAssignee();
+    String getAssignee();
     void setPriority(Priority priority);
     void setSeverity(Severity severity);
     void setStatus(BugStatus status);

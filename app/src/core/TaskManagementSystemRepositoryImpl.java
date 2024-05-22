@@ -182,7 +182,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
     @Override
     public Bug createBug(String title, String description, List<String> stepsToReproduce, Priority priority, Severity severity,
                          BugStatus status, Person assignee, Board board) {
-        Bug bug = new BugImpl(++nextId, title, description, stepsToReproduce, priority, severity, status, assignee);
+        Bug bug = new BugImpl(++nextId, title, description, stepsToReproduce, priority, severity, status, assignee.getName());
         findBoardByName(board.getName()).addTask(bug);
         this.tasks.add(bug);
         return bug;
@@ -190,7 +190,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public Story createStory(String title, String description, Priority priority, Size size, StoryStatus status, Person assignee, Board board) {
-        Story story = new StoryImpl(++nextId, title, description, priority, size, status, assignee);
+        Story story = new StoryImpl(++nextId, title, description, priority, size, status, assignee.getName());
         findBoardByName(board.getName()).addTask(story);
         this.tasks.add(story);
         return story;
