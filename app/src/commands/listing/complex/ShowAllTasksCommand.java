@@ -22,20 +22,36 @@ public class ShowAllTasksCommand implements Command {
         if (repository.getTasks().isEmpty()) {
             return "No tasks created.";
         }
+
         Scanner scanner = new Scanner(System.in);
         List<String> tasks = new ArrayList<>();
         for (Task task : repository.getTasks()) {
-            tasks.add(task.toString());
+            tasks.add(task.getTitle());
         }
+
         System.out.println("Enter filter criteria or an empty line for an unfiltered list: ");
         String input = scanner.nextLine();
+        List<String> filteredTasks;
         if (input.equalsIgnoreCase("")) {
-            System.out.println(tasks);
-            return "Done!";
+            filteredTasks = new ArrayList<>(tasks);
         } else {
-            List<String> filteredTasks = FilteringHelpers.filter(tasks, input);
-            System.out.println(filteredTasks);
+            filteredTasks = FilteringHelpers.filter(tasks, input);
         }
-        return "Done!";
+
+        System.out.println("Do you want to sort the tasks? yes/no");
+        input = scanner.nextLine();
+        if (input.equalsIgnoreCase("yes")) {
+            filteredTasks.sort(String::compareToIgnoreCase);
+        }
+
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("==========\n");
+        for (String taskTitle : filteredTasks) {
+            stringBuilder.append(repository.findTaskByName(taskTitle).toString());
+            stringBuilder.append("\n");
+        }
+        stringBuilder.append("==========");
+
+        return stringBuilder.toString();
     }
 }
