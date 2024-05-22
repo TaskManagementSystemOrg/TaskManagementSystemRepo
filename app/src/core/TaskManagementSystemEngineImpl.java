@@ -26,7 +26,7 @@ public class TaskManagementSystemEngineImpl implements Engine {
         taskManagementSystemRepository.loadTasksToJson();
         taskManagementSystemRepository.loadBoardsFromJson();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("You need to log in.");
+        System.out.println("Type (user/admin) to log in as such: ");
         while (true) {
             try {
                 String inputLine = scanner.nextLine();

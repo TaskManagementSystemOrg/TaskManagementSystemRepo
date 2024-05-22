@@ -53,8 +53,10 @@ public class CommandFactoryImpl implements CommandFactory {
 
     private Command handleNotLoggedInCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
         switch (commandType) {
-            case LOG_IN:
-                return new LogInCommand(taskManagementSystemRepository);
+            case ADMIN:
+                return new LogInCommand(taskManagementSystemRepository, 1);
+            case USER:
+                return new LogInCommand(taskManagementSystemRepository, 0);
             default:
                 return new NotLoggedInCommand();
         }

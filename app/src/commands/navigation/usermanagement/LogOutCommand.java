@@ -20,6 +20,6 @@ public class LogOutCommand implements Command {
             return "Exit the current team and board in order to log out.";
         }
         repository.setCurrentUser(UserType.NOT_LOGGED_IN);
-        return "Logged out. Log in to proceed with operations:";
+        return "Logged out. Type (user/admin) to log in as such: ";
     }
 }

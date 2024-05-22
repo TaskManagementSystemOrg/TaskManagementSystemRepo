@@ -41,7 +41,9 @@ public enum CommandType {
     SHOW_ALL_TASKS_WITH_ASSIGNEE("shows all task for an assignee"),
     SHOW_COMMENTS("show commnets for a given task"),
     ADD_COMMENT("adds comment"),
-    REMOVE_COMMENT("removes comment");
+    REMOVE_COMMENT("removes comment"),
+    ADMIN("calls to log in as admin"),
+    USER("calls to log in as a user");
 
     private final String description;
 
