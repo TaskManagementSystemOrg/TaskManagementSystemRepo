@@ -93,7 +93,7 @@ public class ShowAllBugsCommand implements Command {
             stringBuilder.append(String.format("Bugs by: %s\n", bugs.get(0).getAssignee()));
         }
         if (bugs.isEmpty()) {
-            return "No bugs fit criteria.";
+            stringBuilder.append("No bugs fit criteria.");
         } else {
             for (Bug bug : bugs) {
                 stringBuilder.append(bug.toString());
@@ -102,18 +102,17 @@ public class ShowAllBugsCommand implements Command {
                 }
                 switch (sortType) {
                     case 0, 1:
-                        stringBuilder.append("\n");
                         break;
                     case 2:
-                        stringBuilder.append(String.format(" Priority: %s\n", bug.getPriority()));
+                        stringBuilder.append(String.format(" Priority: %s", bug.getPriority()));
                         break;
                     case 3:
-                        stringBuilder.append(String.format(" Severity: %s\n", bug.getSeverity()));
+                        stringBuilder.append(String.format(" Severity: %s", bug.getSeverity()));
                         break;
                 }
             }
         }
-        stringBuilder.append("====================");
+        stringBuilder.append("\n====================");
         sortType = 0;
         return stringBuilder.toString();
     }
