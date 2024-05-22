@@ -81,17 +81,17 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
     @Override
     public List<String> getActivity(Person person) {
-        return null;
+        return person.getActivity();
     }
 
     @Override
     public List<String> getActivity(Team team) {
-        return null;
+        return team.getActivity();
     }
 
     @Override
     public List<String> getActivity(Board board) {
-        return null;
+        return board.getActivity();
     }
 
     @Override
