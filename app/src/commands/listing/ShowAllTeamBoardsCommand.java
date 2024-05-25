@@ -7,6 +7,7 @@ import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Board;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class ShowAllTeamBoardsCommand implements Command {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
@@ -18,12 +19,25 @@ public class ShowAllTeamBoardsCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.get(0);
-        List<Board> boards = taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(name));
-        if (boards.isEmpty()) {
-            return "There are no boards in this team.";
+        if (taskManagementSystemRepository.getBoards().isEmpty()) {
+            return "Create a team and board first";
         }
-        return ListingHelpers.elementsToString(boards);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter team name or type help to see all teams: ");
+        String input = scanner.nextLine();
+        while (true) {
+            if (input.equalsIgnoreCase("help")) {
+                System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getTeams()));
+                input = scanner.nextLine();
+            } else if (taskManagementSystemRepository.getTeams().contains(taskManagementSystemRepository.findTeamByName(input))) {
+                if (taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)).isEmpty()) {
+                    return "No boards created in this team yet.";
+                }
+                return ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)));
+            } else {
+                System.out.println("Not a valid input. Try again.");
+                input = scanner.nextLine();
+            }
+        }
     }
 }
