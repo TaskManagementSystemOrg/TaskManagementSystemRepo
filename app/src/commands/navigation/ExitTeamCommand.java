@@ -14,7 +14,11 @@ public class ExitTeamCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
+        if (repository.getCurrentTeam() == null) {
+            return "Not in a team.";
+        }
         repository.setCurrentTeam(null);
-        return "Exited current team.";
+        repository.setCurrentBoard(null);
+        return "Exited current team and board.";
     }
 }

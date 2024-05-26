@@ -41,8 +41,9 @@ public abstract class TaskBuilder<T> {
             StringBuilder stringBuilder = new StringBuilder();
             for (Person person : repository.getPeople()) {
                 stringBuilder.append(person.toString());
+                stringBuilder.append("\n");
             }
-            System.out.println(stringBuilder);
+            System.out.print(stringBuilder);
             System.out.println("Enter assignee name: ");
             assigneeName = scanner.nextLine();
         }

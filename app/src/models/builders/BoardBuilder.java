@@ -48,8 +48,9 @@ public class BoardBuilder extends EntityBuilder<Board> {
                     StringBuilder stringBuilder = new StringBuilder();
                     for (Team team : repository.getTeams()) {
                         stringBuilder.append(team.toString());
+                        stringBuilder.append("\n");
                     }
-                    System.out.println(stringBuilder);
+                    System.out.print(stringBuilder);
                     System.out.println("Enter team name (5-15 characters): ");
                     teamName = scanner.nextLine();
                     continue;
