@@ -17,7 +17,6 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ChangeBugPriority implements Command {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     protected final TaskManagementSystemRepository repository;
 
     public ChangeBugPriority(TaskManagementSystemRepository taskManagementSystemRepository) {
@@ -65,7 +64,7 @@ public class ChangeBugPriority implements Command {
         while (true) {
             if (input.equalsIgnoreCase("high") || input.equalsIgnoreCase("medium") || input.equalsIgnoreCase("low")) {
                 bug.setPriority(ParsingHelpers.tryParseEnum(input, Priority.class, "Invalid enum."));
-                return String.format("%s set to %s priority.", bug.getTitle(), bug.getPriority());
+                return String.format("%s priority set to %s.", bug.getTitle(), bug.getPriority());
             } else {
                 System.out.println("Not a valid input. Try again:");
                 input = scanner.nextLine();

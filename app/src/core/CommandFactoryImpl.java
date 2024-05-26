@@ -64,7 +64,7 @@ public class CommandFactoryImpl implements CommandFactory {
 
     private Command handleNormalUserCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
         if (taskManagementSystemRepository.getCurrentBoard() != null) {
-            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
+//            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
             return handleNormalUserWithBoardCommands(commandType, taskManagementSystemRepository);
         } else {
             return handleNormalUserWithoutBoardCommands(commandType, taskManagementSystemRepository);

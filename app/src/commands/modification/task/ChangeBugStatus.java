@@ -63,7 +63,7 @@ public class ChangeBugStatus implements Command {
         while (true) {
             if (input.equalsIgnoreCase("Done") || input.equalsIgnoreCase("Active")) {
                 bug.setStatus(ParsingHelpers.tryParseEnum(input, BugStatus.class, "Invalid enum."));
-                return String.format("%s set to %s priority.", bug.getTitle(), bug.getStatus());
+                return String.format("%s status set to %s.", bug.getTitle(), bug.getStatus());
             } else {
                 System.out.println("Not a valid input. Try again:");
                 input = scanner.nextLine();

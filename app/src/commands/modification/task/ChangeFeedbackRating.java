@@ -1,29 +1,75 @@
 package commands.modification.task;
 
+import Utils.ListingHelpers;
 import Utils.ParsingHelpers;
 import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
+import models.contracts.Bug;
 import models.contracts.Feedback;
+import models.contracts.Task;
+import models.enums.BugStatus;
+import models.enums.TaskType;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ChangeFeedbackRating implements Command {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
-    protected final TaskManagementSystemRepository taskManagementSystemRepository;
+
+    protected final TaskManagementSystemRepository repository;
 
     public ChangeFeedbackRating(TaskManagementSystemRepository taskManagementSystemRepository) {
-        this.taskManagementSystemRepository = taskManagementSystemRepository;
+        this.repository = taskManagementSystemRepository;
     }
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String feedbackName = parameters.get(0);
-        int rating = ParsingHelpers.tryParseInteger(parameters.get(1), "rating");
-        Feedback feedback = (Feedback) taskManagementSystemRepository.findTaskByName(feedbackName);
-        int oldValue = feedback.getRating();
-        feedback.setRating(rating);
-        return String.format("Rating changed from %s to %s", oldValue, rating);
+        Scanner scanner = new Scanner(System.in);
+        if (repository.getTasks().stream()
+                .noneMatch(task -> task.getType().equals(TaskType.FEEDBACK))) {
+            return "No feedback created yet.";
+        }
+        List<Feedback> feedbacks = new ArrayList<>();
+        for (Task task : repository.getTasks()) {
+            if (task.getType().equals(TaskType.FEEDBACK)) {
+                feedbacks.add((Feedback) task);
+            }
+        }
+
+
+        Feedback feedback = null;
+        System.out.println("Type help to see all options or enter a task: ");
+        String input = scanner.nextLine();
+
+        while (true) {
+            if (input.equalsIgnoreCase("help")) {
+                System.out.println("====================");
+                System.out.println(ListingHelpers.elementsToString(feedbacks));
+                System.out.println("====================");
+                System.out.println("Type help to see all options or enter task: ");
+                input = scanner.nextLine();
+            } else if (feedbacks.contains(repository.findTaskByName(input))) {
+                feedback = (Feedback) repository.findTaskByName(input);
+                break;
+            } else {
+                System.out.println("Not a valid input. Try again:");
+                input = scanner.nextLine();
+            }
+        }
+
+        System.out.print("Enter new rating(0-10): ");
+        input = scanner.nextLine();
+
+        while (true) {
+            if (ParsingHelpers.tryParseInteger(input, "rating") > 0 || ParsingHelpers.tryParseInteger(input, "rating") < 10) {
+                feedback.setRating(ParsingHelpers.tryParseInteger(input, "rating"));
+                return String.format("%s rating set to %d.", feedback.getTitle(), feedback.getRating());
+            } else {
+                System.out.println("Not a valid input. Try again:");
+                input = scanner.nextLine();
+            }
+        }
+
     }
 }

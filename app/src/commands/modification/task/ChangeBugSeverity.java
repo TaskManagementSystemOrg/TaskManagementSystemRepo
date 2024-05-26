@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChangeBugSeverity implements Command {
-    public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 2;
     protected final TaskManagementSystemRepository repository;
 
     public ChangeBugSeverity(TaskManagementSystemRepository taskManagementSystemRepository) {
@@ -64,7 +63,7 @@ public class ChangeBugSeverity implements Command {
         while (true) {
             if (input.equalsIgnoreCase("critical") || input.equalsIgnoreCase("major") || input.equalsIgnoreCase("minor")) {
                 bug.setSeverity(ParsingHelpers.tryParseEnum(input, Severity.class, "Invalid enum."));
-                return String.format("%s set to %s priority.", bug.getTitle(), bug.getSeverity());
+                return String.format("%s severity set to %s.", bug.getTitle(), bug.getSeverity());
             } else {
                 System.out.println("Not a valid input. Try again:");
                 input = scanner.nextLine();
