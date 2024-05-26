@@ -22,12 +22,16 @@ public class ShowAllTeamBoardsCommand implements Command {
         if (taskManagementSystemRepository.getBoards().isEmpty()) {
             return "Create a team and board first";
         }
+        if (taskManagementSystemRepository.getCurrentTeam() != null) {
+            return ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.getCurrentTeam()));
+        }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter team name or type help to see all teams: ");
         String input = scanner.nextLine();
         while (true) {
             if (input.equalsIgnoreCase("help")) {
                 System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getTeams()));
+                System.out.println("Enter team name or type help to see all teams: ");
                 input = scanner.nextLine();
             } else if (taskManagementSystemRepository.getTeams().contains(taskManagementSystemRepository.findTeamByName(input))) {
                 if (taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)).isEmpty()) {
