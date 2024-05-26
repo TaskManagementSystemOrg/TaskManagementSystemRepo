@@ -16,4 +16,5 @@ public interface Story extends Task{
     void setPriority(Priority priority);
     void setSize(Size size);
     void setStatus(StoryStatus status);
+    void setAssignee(String assignee);
 }

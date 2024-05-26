@@ -44,7 +44,7 @@ public class BugImpl extends TaskImpl implements Bug {
     public void setStatus(BugStatus status) {
         this.status = status;
     }
-    private void setAssignee(String assignee) {
+    public void setAssignee(String assignee) {
         this.assignee = assignee;
     }
 

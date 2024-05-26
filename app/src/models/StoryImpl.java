@@ -32,7 +32,7 @@ public class StoryImpl extends TaskImpl implements Story {
     public void setStatus(StoryStatus status) {
         this.status = status;
     }
-    private void setAssignee(String assignee) {
+    public void setAssignee(String assignee) {
         this.assignee = assignee;
     }
 

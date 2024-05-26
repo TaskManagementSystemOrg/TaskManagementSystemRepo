@@ -15,5 +15,6 @@ public interface Bug extends Task{
     void setPriority(Priority priority);
     void setSeverity(Severity severity);
     void setStatus(BugStatus status);
+    void setAssignee(String assignee);
 
 }
