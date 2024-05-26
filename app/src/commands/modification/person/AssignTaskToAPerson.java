@@ -55,7 +55,7 @@ public class AssignTaskToAPerson implements Command {
                 System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getTasks()));
                 System.out.println("====================");
-                System.out.println("Type help to see all options or enter person: ");
+                System.out.println("Type help to see all options or enter task: ");
                 input = scanner.nextLine();
             } else if (repository.getTasks().contains(repository.findTaskByName(input))) {
                 Task task = repository.findTaskByName(input);
