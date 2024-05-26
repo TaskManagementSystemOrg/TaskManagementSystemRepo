@@ -22,7 +22,7 @@ public class ShowAllBugsCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         String input;
         List<Bug> bugs = new ArrayList<>();

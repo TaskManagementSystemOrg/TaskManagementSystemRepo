@@ -1,7 +1,6 @@
 package commands.modification.person;
 
 import Utils.ListingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Bug;
@@ -24,7 +23,7 @@ public class UnassignTaskToAPerson implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getTasks().isEmpty() || repository.getPeople().isEmpty()) {
             return "No tasks and/or people created yet.";
         }

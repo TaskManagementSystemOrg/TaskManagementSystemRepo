@@ -3,8 +3,6 @@ package commands.navigation;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
-
 public class ExitBoardCommand implements Command {
     private final TaskManagementSystemRepository taskManagementSystemRepository;
 
@@ -13,7 +11,7 @@ public class ExitBoardCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (taskManagementSystemRepository.getCurrentBoard() == null) {
             return "Not in a board.";
         }

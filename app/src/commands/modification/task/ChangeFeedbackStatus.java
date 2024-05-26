@@ -2,7 +2,6 @@ package commands.modification.task;
 
 import Utils.ListingHelpers;
 import Utils.ParsingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Feedback;
@@ -23,7 +22,7 @@ public class ChangeFeedbackStatus implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         if (repository.getTasks().stream()
                 .noneMatch(task -> task.getType().equals(TaskType.FEEDBACK))) {

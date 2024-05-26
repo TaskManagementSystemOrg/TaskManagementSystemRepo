@@ -4,7 +4,6 @@ import Utils.ListingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ShowCommentsCommand implements Command {
@@ -15,7 +14,7 @@ public class ShowCommentsCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type help or enter task name: ");
         String input = scanner.nextLine();

@@ -1,7 +1,6 @@
 package commands.listing.complex;
 
 import commands.contracts.Command;
-import core.TaskManagementSystemEngineImpl;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Bug;
 import models.contracts.Feedback;
@@ -26,7 +25,7 @@ public class ShowTasksWithAssigneeCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         List<Feedback> feedbacks = new ArrayList<>();
         List<Bug> bugs = new ArrayList<>();

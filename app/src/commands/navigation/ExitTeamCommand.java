@@ -3,8 +3,6 @@ package commands.navigation;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
-
 public class ExitTeamCommand implements Command {
     private final TaskManagementSystemRepository repository;
 
@@ -13,7 +11,7 @@ public class ExitTeamCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getCurrentTeam() == null) {
             return "Not in a team.";
         }

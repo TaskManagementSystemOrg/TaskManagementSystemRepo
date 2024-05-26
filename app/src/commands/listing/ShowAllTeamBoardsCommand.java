@@ -1,12 +1,9 @@
 package commands.listing;
 
 import Utils.ListingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Board;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ShowAllTeamBoardsCommand implements Command {
@@ -18,7 +15,7 @@ public class ShowAllTeamBoardsCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (taskManagementSystemRepository.getBoards().isEmpty()) {
             return "Create a team and board first";
         }

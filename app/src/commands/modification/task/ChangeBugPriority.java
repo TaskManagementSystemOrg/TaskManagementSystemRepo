@@ -2,11 +2,9 @@ package commands.modification.task;
 
 import Utils.ListingHelpers;
 import Utils.ParsingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Bug;
-import models.contracts.Story;
 import models.contracts.Task;
 import models.enums.Priority;
 import models.enums.TaskType;
@@ -14,7 +12,6 @@ import models.enums.TaskType;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class ChangeBugPriority implements Command {
     protected final TaskManagementSystemRepository repository;
@@ -24,7 +21,7 @@ public class ChangeBugPriority implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         if (repository.getTasks().stream()
                 .noneMatch(task -> task.getType().equals(TaskType.BUG))) {

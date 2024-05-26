@@ -1,13 +1,10 @@
 package commands.modification.person;
 
 import Utils.ListingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Person;
-import models.contracts.Team;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AddPersonToTeamCommand implements Command {
@@ -19,7 +16,7 @@ public class AddPersonToTeamCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getPeople().isEmpty() || repository.getTeams().isEmpty()) {
             return "No people or teams created yet.";
         }

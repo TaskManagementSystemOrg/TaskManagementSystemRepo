@@ -4,8 +4,6 @@ import commands.contracts.Command;
 import commands.enums.UserType;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
-
 public class LogOutCommand implements Command {
     TaskManagementSystemRepository repository;
 
@@ -15,7 +13,7 @@ public class LogOutCommand implements Command {
 
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getCurrentTeam() != null || repository.getCurrentBoard() != null) {
             return "Exit the current team and board in order to log out.";
         }

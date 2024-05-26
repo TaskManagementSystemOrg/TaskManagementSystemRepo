@@ -1,13 +1,9 @@
 package commands.listing;
 
 import Utils.ListingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Person;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class ShowAllTeamMembers implements Command {
@@ -19,7 +15,7 @@ public class ShowAllTeamMembers implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (taskManagementSystemRepository.getTeams().isEmpty()) {
             return "No teams created yet.";
         }

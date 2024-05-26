@@ -4,9 +4,6 @@ import commands.contracts.Command;
 import commands.enums.UserType;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
-import java.util.Scanner;
-
 public class LogInCommand implements Command {
     TaskManagementSystemRepository repository;
     private int type;
@@ -17,7 +14,7 @@ public class LogInCommand implements Command {
 
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Type 'admin' or 'user' to log in as such:");
 //        String input = scanner.nextLine();

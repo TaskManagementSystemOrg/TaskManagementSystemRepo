@@ -17,7 +17,7 @@ public class EnterBoardCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getBoards().isEmpty() || repository.getTeams().isEmpty()) {
             return "Create a board and team first.";
         }

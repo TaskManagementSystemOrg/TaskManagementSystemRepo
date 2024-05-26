@@ -3,11 +3,8 @@ package commands.listing.complex;
 import Utils.ParsingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Bug;
-import models.contracts.Feedback;
 import models.contracts.Story;
 import models.contracts.Task;
-import models.enums.BugStatus;
 import models.enums.StoryStatus;
 import models.enums.TaskType;
 
@@ -25,7 +22,7 @@ public class ShowAllStoriesCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         String input;
         List<Story> stories = new ArrayList<>();

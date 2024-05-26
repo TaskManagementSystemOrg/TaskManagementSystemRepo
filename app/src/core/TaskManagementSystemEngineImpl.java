@@ -52,8 +52,7 @@ public class TaskManagementSystemEngineImpl implements Engine {
     private void processCommand(String inputLine) {
         String commandName = extractCommandName(inputLine);
         Command command = commandFactory.createCommandFromCommandName(commandName, taskManagementSystemRepository);
-        List<String> parameters = extractCommandParameters(inputLine);
-        String executionResult = command.execute(parameters);
+        String executionResult = command.execute();
         System.out.println(executionResult);
     }
 

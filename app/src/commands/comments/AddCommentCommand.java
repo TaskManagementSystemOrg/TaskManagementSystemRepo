@@ -5,7 +5,6 @@ import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Person;
 import models.contracts.Task;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class AddCommentCommand implements Command {
@@ -16,7 +15,7 @@ public class AddCommentCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getCurrentBoard() == null) {
             return "Enter into a board first.";
         }

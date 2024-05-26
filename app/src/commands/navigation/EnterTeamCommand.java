@@ -2,7 +2,6 @@ package commands.navigation;
 
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Board;
 import models.contracts.Team;
 
 import java.util.ArrayList;
@@ -17,7 +16,7 @@ public class EnterTeamCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getTeams().isEmpty()) {
             return "Create a team first.";
         }

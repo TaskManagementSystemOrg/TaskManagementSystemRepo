@@ -15,7 +15,7 @@ public class ShowAllTeamsCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (teams.isEmpty()) {
             return "There are no teams created yet.";
         }

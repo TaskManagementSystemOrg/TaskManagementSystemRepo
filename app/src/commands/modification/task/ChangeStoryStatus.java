@@ -2,13 +2,10 @@ package commands.modification.task;
 
 import Utils.ListingHelpers;
 import Utils.ParsingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Feedback;
 import models.contracts.Story;
 import models.contracts.Task;
-import models.enums.FeedbackStatus;
 import models.enums.StoryStatus;
 import models.enums.TaskType;
 
@@ -24,7 +21,7 @@ public class ChangeStoryStatus implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         if (repository.getTasks().stream()
                 .noneMatch(task -> task.getType().equals(TaskType.STORY))) {

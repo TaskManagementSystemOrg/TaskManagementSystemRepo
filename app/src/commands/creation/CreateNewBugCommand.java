@@ -4,8 +4,6 @@ import core.contracts.TaskManagementSystemRepository;
 import models.builders.BugBuilder;
 import models.contracts.Bug;
 
-import java.util.List;
-
 public class CreateNewBugCommand extends CreateNewTaskCommand{
 
     public CreateNewBugCommand(TaskManagementSystemRepository repository) {
@@ -13,7 +11,7 @@ public class CreateNewBugCommand extends CreateNewTaskCommand{
     }
 
     @Override
-    public String execute(List<String> params) {
+    public String execute() {
         BugBuilder builder = new BugBuilder(repository);
         Bug bug = builder.build();
         if (bug == null) {

@@ -3,14 +3,11 @@ package commands.listing.complex;
 import Utils.ParsingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Bug;
 import models.contracts.Feedback;
 import models.contracts.Task;
-import models.enums.BugStatus;
 import models.enums.FeedbackStatus;
 import models.enums.TaskType;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -25,7 +22,7 @@ public class ShowAllFeedbackCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         Scanner scanner = new Scanner(System.in);
         String input;
         List<Feedback> feedbacks = new ArrayList<>();

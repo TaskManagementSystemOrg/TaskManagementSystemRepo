@@ -4,8 +4,6 @@ import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.builders.EntityBuilder;
 
-import java.util.List;
-
 public abstract class CreateNewEntityCommand<T> implements Command {
     protected final TaskManagementSystemRepository repository;
 
@@ -14,7 +12,7 @@ public abstract class CreateNewEntityCommand<T> implements Command {
     }
 
     @Override
-    public String execute(List<String> params) {
+    public String execute() {
         EntityBuilder<T> builder = createEntityBuilder();
         T entity = builder.build();
         if (entity == null) {

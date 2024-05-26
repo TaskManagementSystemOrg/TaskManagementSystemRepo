@@ -1,11 +1,9 @@
 package commands.listing;
 
 import Utils.ListingHelpers;
-import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class ShowBoardActivityCommand implements Command {
@@ -16,7 +14,7 @@ public class ShowBoardActivityCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (taskManagementSystemRepository.getBoards().isEmpty()) {
             return "No boards created yet.";
         }

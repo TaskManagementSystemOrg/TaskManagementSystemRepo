@@ -15,7 +15,7 @@ public class ShowAllPeopleCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (people.isEmpty()) {
             return "There are no registered users.";
         }

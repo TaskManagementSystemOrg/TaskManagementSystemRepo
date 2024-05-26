@@ -1,7 +1,6 @@
 package commands.listing.complex;
 
 import Utils.FilteringHelpers;
-import Utils.ListingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Task;
@@ -18,7 +17,7 @@ public class ShowAllTasksCommand implements Command {
     }
 
     @Override
-    public String execute(List<String> parameters) {
+    public String execute() {
         if (repository.getTasks().isEmpty()) {
             return "No tasks created.";
         }
