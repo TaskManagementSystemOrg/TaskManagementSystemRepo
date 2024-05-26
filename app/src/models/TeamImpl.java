@@ -1,12 +1,9 @@
 package models;
 
-import Utils.FormattingHelpers;
-import Utils.ValidationHelpers;
-import models.contracts.Board;
-import models.contracts.Person;
+import utils.FormattingHelpers;
+import utils.ValidationHelpers;
 import models.contracts.Team;
 
-import java.lang.reflect.Member;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

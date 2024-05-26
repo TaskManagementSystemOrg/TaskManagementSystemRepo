@@ -1,6 +1,5 @@
-package Models;
+package models;
 
-import models.PersonImpl;
 import models.contracts.Person;
 
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package commands.modification.task;
 
-import Utils.ListingHelpers;
-import Utils.ParsingHelpers;
+import utils.ListingHelpers;
+import utils.ParsingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Bug;
@@ -27,6 +27,7 @@ public class ChangeBugSeverity implements Command {
                 .noneMatch(task -> task.getType().equals(TaskType.BUG))) {
             return "No bugs created yet.";
         }
+
         List<Bug> bugs = new ArrayList<>();
         for (Task task : repository.getTasks()) {
             if (task.getType().equals(TaskType.BUG)) {
@@ -59,7 +60,8 @@ public class ChangeBugSeverity implements Command {
         input = scanner.nextLine();
 
         while (true) {
-            if (input.equalsIgnoreCase("critical") || input.equalsIgnoreCase("major") || input.equalsIgnoreCase("minor")) {
+            if (input.equalsIgnoreCase(Severity.CRITICAL.toString()) || input.equalsIgnoreCase(Severity.MAJOR.toString())
+                    || input.equalsIgnoreCase(Severity.MINOR.toString())) {
                 bug.setSeverity(ParsingHelpers.tryParseEnum(input, Severity.class, "Invalid enum."));
                 return String.format("%s severity set to %s.", bug.getTitle(), bug.getSeverity());
             } else {

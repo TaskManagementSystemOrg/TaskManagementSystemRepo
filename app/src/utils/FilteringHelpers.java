@@ -1,7 +1,4 @@
-package Utils;
-
-import models.contracts.Printable;
-import models.contracts.Task;
+package utils;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,7 +1,7 @@
 package models.builders;
 
 import core.contracts.TaskManagementSystemRepository;
-import Utils.ValidationHelpers;
+import utils.ValidationHelpers;
 
 import java.util.Scanner;
 

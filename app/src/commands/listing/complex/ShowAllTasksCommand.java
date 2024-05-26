@@ -1,6 +1,6 @@
 package commands.listing.complex;
 
-import Utils.FilteringHelpers;
+import utils.FilteringHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Task;

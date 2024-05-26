@@ -1,6 +1,6 @@
 package commands.modification.person;
 
-import Utils.ListingHelpers;
+import utils.ListingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Person;

@@ -1,6 +1,6 @@
 package commands.listing;
 
-import Utils.ListingHelpers;
+import utils.ListingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 
@@ -18,8 +18,8 @@ public class ShowCommentsCommand implements Command {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Type help or enter task name: ");
         String input = scanner.nextLine();
-        boolean k = true;
-        while (k) {
+        boolean notDone = true;
+        while (notDone) {
             if (input.equalsIgnoreCase("help")) {
                 System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getTasks()));
@@ -33,7 +33,7 @@ public class ShowCommentsCommand implements Command {
                 System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.findTaskByName(input).getComments()));
                 System.out.println("====================");
-                k = false;
+                notDone = false;
             }
         }
         return "Done.";

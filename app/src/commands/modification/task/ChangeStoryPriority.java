@@ -1,7 +1,7 @@
 package commands.modification.task;
 
-import Utils.ListingHelpers;
-import Utils.ParsingHelpers;
+import utils.ListingHelpers;
+import utils.ParsingHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
 import models.contracts.Story;

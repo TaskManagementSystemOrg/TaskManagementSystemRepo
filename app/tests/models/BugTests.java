@@ -1,8 +1,5 @@
-package Models;
+package models;
 
-import models.BugImpl;
-import models.CommentImpl;
-import models.PersonImpl;
 import models.contracts.Bug;
 import models.contracts.Comment;
 import models.enums.BugStatus;

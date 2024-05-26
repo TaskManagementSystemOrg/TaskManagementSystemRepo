@@ -1,7 +1,6 @@
 package core;
 
-import Utils.ParsingHelpers;
-import com.google.gson.Gson;
+import utils.ParsingHelpers;
 import commands.SaveCommand;
 import commands.comments.AddCommentCommand;
 import commands.contracts.Command;
@@ -22,11 +21,8 @@ import commands.navigation.usermanagement.LogOutCommand;
 import commands.navigation.usermanagement.NotLoggedInCommand;
 import core.contracts.CommandFactory;
 import core.contracts.TaskManagementSystemRepository;
-import models.contracts.Board;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class CommandFactoryImpl implements CommandFactory {
     private static final String INVALID_COMMAND = "Invalid command name: %s!";
@@ -63,18 +59,25 @@ public class CommandFactoryImpl implements CommandFactory {
     }
 
     private Command handleNormalUserCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
-        if (taskManagementSystemRepository.getCurrentBoard() != null) {
-//            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
-            return handleNormalUserWithBoardCommands(commandType, taskManagementSystemRepository);
-        } else {
-            return handleNormalUserWithoutBoardCommands(commandType, taskManagementSystemRepository);
-        }
-    }
-
-    private Command handleNormalUserWithBoardCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
         switch (commandType) {
             case SHOW_BOARD_ACTIVITY:
                 return new ShowBoardActivityCommand(taskManagementSystemRepository);
+            case SHOW_PERSON_ACTIVITY:
+                return new ShowPersonsActivityCommand(taskManagementSystemRepository);
+            case SHOW_TEAM_ACTIVITY:
+                return new ShowTeamsActivityCommand(taskManagementSystemRepository);
+            case SHOW_ALL_TEAM_MEMBERS:
+                return new ShowAllTeamMembers(taskManagementSystemRepository);
+            case SHOW_ALL_TEAM_BOARDS:
+                return new ShowAllTeamBoardsCommand(taskManagementSystemRepository);
+            case ENTER_BOARD:
+                return new EnterBoardCommand(taskManagementSystemRepository);
+            case ENTER_TEAM:
+                return new EnterTeamCommand(taskManagementSystemRepository);
+            case EXIT_TEAM:
+                return new ExitTeamCommand(taskManagementSystemRepository);
+            case SAVE:
+                return new SaveCommand(taskManagementSystemRepository);
             case CREATE_BUG:
                 return new CreateNewBugCommand(taskManagementSystemRepository);
             case CREATE_STORY:
@@ -90,34 +93,7 @@ public class CommandFactoryImpl implements CommandFactory {
             case LOG_OUT:
                 return new LogOutCommand(taskManagementSystemRepository);
             default:
-                throw new IllegalArgumentException();
-        }
-    }
-
-    private Command handleNormalUserWithoutBoardCommands(CommandType commandType, TaskManagementSystemRepository taskManagementSystemRepository) {
-        switch (commandType) {
-            case SHOW_PERSON_ACTIVITY:
-                return new ShowPersonsActivityCommand(taskManagementSystemRepository);
-            case SHOW_TEAM_ACTIVITY:
-                return new ShowTeamsActivityCommand(taskManagementSystemRepository);
-            case SHOW_ALL_TEAM_MEMBERS:
-                return new ShowAllTeamMembers(taskManagementSystemRepository);
-            case SHOW_ALL_TEAM_BOARDS:
-                return new ShowAllTeamBoardsCommand(taskManagementSystemRepository);
-            case ENTER_BOARD:
-                return new EnterBoardCommand(taskManagementSystemRepository);
-            case ENTER_TEAM:
-                return new EnterTeamCommand(taskManagementSystemRepository);
-            case EXIT_TEAM:
-                return new ExitTeamCommand(taskManagementSystemRepository);
-            case EXIT_BOARD:
-                return new ExitBoardCommand(taskManagementSystemRepository);
-            case SAVE:
-                return new SaveCommand(taskManagementSystemRepository);
-            case LOG_OUT:
-                return new LogOutCommand(taskManagementSystemRepository);
-            default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Not valid command.");
         }
     }
 

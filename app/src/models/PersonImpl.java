@@ -1,12 +1,9 @@
 package models;
 
-import Utils.FormattingHelpers;
-import Utils.ValidationHelpers;
+import utils.FormattingHelpers;
+import utils.ValidationHelpers;
 import models.contracts.Person;
-import models.contracts.Printable;
-import models.contracts.Task;
 
-import javax.naming.Name;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,9 +1,8 @@
 package models;
 
-import Utils.FormattingHelpers;
-import Utils.ValidationHelpers;
+import utils.FormattingHelpers;
+import utils.ValidationHelpers;
 import models.contracts.Board;
-import models.contracts.Task;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

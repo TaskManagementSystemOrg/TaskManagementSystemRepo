@@ -1,8 +1,5 @@
-package Models;
+package models;
 
-import models.FeedbackImpl;
-import models.CommentImpl;
-import models.PersonImpl;
 import models.contracts.Comment;
 import models.contracts.Feedback;
 import models.enums.FeedbackStatus;
