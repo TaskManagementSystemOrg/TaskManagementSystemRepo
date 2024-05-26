@@ -4,6 +4,7 @@ import commands.contracts.Command;
 import core.contracts.Engine;
 import core.contracts.TaskManagementSystemRepository;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -53,6 +54,11 @@ public class TaskManagementSystemEngineImpl implements Engine {
         String commandName = extractCommandName(inputLine);
         Command command = commandFactory.createCommandFromCommandName(commandName, taskManagementSystemRepository);
         String executionResult = command.execute();
+        clearConsole();
+        if(taskManagementSystemRepository.getCurrentBoard() != null)
+        {
+            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
+        }
         System.out.println(executionResult);
     }
 
@@ -67,5 +73,18 @@ public class TaskManagementSystemEngineImpl implements Engine {
             parameters.add(commandParts[i]);
         }
         return parameters;
+    }
+
+    public static void clearConsole() {
+        try {
+            String os = System.getProperty("os.name");
+            if (os.contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                new ProcessBuilder("clear").inheritIO().start().waitFor();
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

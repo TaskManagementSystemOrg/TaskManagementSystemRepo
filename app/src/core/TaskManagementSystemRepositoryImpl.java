@@ -437,9 +437,9 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
 
         // Print the header
         System.out.println("Board: " + board.getName());
-        System.out.println("============================================================");
+        System.out.println(" ============================================================");
         System.out.println("| Status           | Task ID | Title                          |");
-        System.out.println("------------------------------------------------------------");
+        System.out.println(" ------------------------------------------------------------");
 
         // Iterate through each status and print tasks
         for (Map.Entry<String, List<Task>> entry : tasksByStatus.entrySet()) {
@@ -448,7 +448,7 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
                 System.out.printf("| %-16s | %-7d | %-30s |%n", status, task.getId(), task.getTitle());
             }
         }
-        System.out.println("============================================================");
+        System.out.println(" ============================================================");
     }
 
 

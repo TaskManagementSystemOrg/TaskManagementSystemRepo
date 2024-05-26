@@ -30,11 +30,7 @@ public class CommandFactoryImpl implements CommandFactory {
     @Override
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagementSystemRepository taskManagementSystemRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class, String.format(INVALID_COMMAND, commandTypeAsString));
-        clearConsole();
-        if(taskManagementSystemRepository.getCurrentBoard() != null)
-        {
-            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
-        }
+
 
         switch (taskManagementSystemRepository.getCurrentUser()) {
             case NOT_LOGGED_IN:
@@ -182,16 +178,5 @@ public class CommandFactoryImpl implements CommandFactory {
         }
     }
 
-    public static void clearConsole() {
-        try {
-            String os = System.getProperty("os.name");
-            if (os.contains("Windows")) {
-                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-            } else {
-                new ProcessBuilder("clear").inheritIO().start().waitFor();
-            }
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
+
 }
