@@ -419,5 +419,13 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
             e.printStackTrace();
         }
     }
+    @Override
+    public void updateNextId() {
+        int maxId = tasks.stream()
+                .mapToInt(Task::getId)
+                .max()
+                .orElse(0);
+        nextId = maxId;
+    }
 
 }
