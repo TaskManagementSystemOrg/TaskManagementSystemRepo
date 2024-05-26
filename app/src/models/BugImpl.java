@@ -68,4 +68,8 @@ public class BugImpl extends TaskImpl implements Bug {
     public String getAssignee() {
         return this.assignee;
     }
-}
+
+    @Override
+    public String getStatusToString() {
+        return status.toString();
+    }}

@@ -24,6 +24,7 @@ public abstract class TaskImpl implements Task {
     private List<Comment> comments;
     private TaskType type;
 
+
     public TaskImpl(int id, String title, String description, TaskType taskType) {
         this.id = id;
         setTitle(title);
@@ -75,5 +76,9 @@ public abstract class TaskImpl implements Task {
     @Override
     public void removeComment(Comment commentToRemove) {
         comments.remove(commentToRemove);
+    }
+    @Override
+    public String getStatusToString() {
+        return "";
     }
 }

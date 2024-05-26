@@ -52,4 +52,9 @@ public class StoryImpl extends TaskImpl implements Story {
     public String getAssignee() {
         return this.assignee;
     }
+
+    @Override
+    public String getStatusToString() {
+        return status.toString();
+    }
 }

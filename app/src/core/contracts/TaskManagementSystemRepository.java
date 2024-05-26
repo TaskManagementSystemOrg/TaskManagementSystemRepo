@@ -49,4 +49,5 @@ public interface TaskManagementSystemRepository {
     void loadTasksToJson();
     void loadBoardsFromJson();
     void updateNextId();
+    void printBoardTasks(Board board);
 }

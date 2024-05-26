@@ -13,4 +13,5 @@ public interface Task extends Printable{
     TaskType getType();
     void addComment(Comment commentToAdd);
     void removeComment(Comment commentToRemove);
+    public String getStatusToString();
 }

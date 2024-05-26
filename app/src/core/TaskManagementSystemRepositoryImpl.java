@@ -21,6 +21,8 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemRepository {
 
@@ -427,5 +429,27 @@ public class TaskManagementSystemRepositoryImpl implements TaskManagementSystemR
                 .orElse(0);
         nextId = maxId;
     }
+
+    public void printBoardTasks(Board board) {
+        Map<String, List<Task>> tasksByStatus = board.getTasks().stream()
+                .map(this::findTaskById)  // Fetch the actual task objects
+                .collect(Collectors.groupingBy(Task::getStatusToString));  // Group by status
+
+        // Print the header
+        System.out.println("Board: " + board.getName());
+        System.out.println("============================================================");
+        System.out.println("| Status           | Task ID | Title                          |");
+        System.out.println("------------------------------------------------------------");
+
+        // Iterate through each status and print tasks
+        for (Map.Entry<String, List<Task>> entry : tasksByStatus.entrySet()) {
+            String status = entry.getKey();
+            for (Task task : entry.getValue()) {
+                System.out.printf("| %-16s | %-7d | %-30s |%n", status, task.getId(), task.getTitle());
+            }
+        }
+        System.out.println("============================================================");
+    }
+
 
 }

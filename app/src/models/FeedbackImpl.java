@@ -32,4 +32,8 @@ public class FeedbackImpl extends TaskImpl implements Feedback {
     public FeedbackStatus getStatus() {
         return status;
     }
+    @Override
+    public String getStatusToString() {
+        return status.toString();
+    }
 }
