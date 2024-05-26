@@ -12,6 +12,6 @@ public class ListingHelpers {
         for (T element : elements) {
             result.add(element.toString());
         }
-        return String.join(System.lineSeparator(), result);
+        return "====================\n" + String.join(System.lineSeparator(), result) + "\n====================";
     }
 }

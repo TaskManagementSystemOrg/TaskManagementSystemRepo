@@ -27,9 +27,7 @@ public class AddPersonToTeamCommand implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getPeople()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter person: ");
                 input = scanner.nextLine();
             } else if (repository.getPeople().contains(repository.findPersonByName(input))) {
@@ -46,9 +44,7 @@ public class AddPersonToTeamCommand implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getTeams()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter person: ");
                 input = scanner.nextLine();
             } else if (repository.getTeams().contains(repository.findTeamByName(input))) {

@@ -31,9 +31,7 @@ public class AssignTaskToAPerson implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getPeople()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter person: ");
                 input = scanner.nextLine();
             } else if (repository.getPeople().contains(repository.findPersonByName(input))) {
@@ -50,9 +48,7 @@ public class AssignTaskToAPerson implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(repository.getTasks()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter task: ");
                 input = scanner.nextLine();
             } else if (repository.getTasks().contains(repository.findTaskByName(input))) {

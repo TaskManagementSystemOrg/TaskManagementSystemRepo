@@ -1,5 +1,6 @@
 package commands.modification.task;
 
+import commands.helpers.GetListOf;
 import utils.ListingHelpers;
 import utils.ParsingHelpers;
 import commands.contracts.Command;
@@ -27,12 +28,7 @@ public class ChangeFeedbackRating implements Command {
                 .noneMatch(task -> task.getType().equals(TaskType.FEEDBACK))) {
             return "No feedback created yet.";
         }
-        List<Feedback> feedbacks = new ArrayList<>();
-        for (Task task : repository.getTasks()) {
-            if (task.getType().equals(TaskType.FEEDBACK)) {
-                feedbacks.add((Feedback) task);
-            }
-        }
+        List<Feedback> feedbacks = GetListOf.feedbacks(repository);
 
 
         Feedback feedback = null;
@@ -41,9 +37,7 @@ public class ChangeFeedbackRating implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(feedbacks));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter task: ");
                 input = scanner.nextLine();
             } else if (feedbacks.contains(repository.findTaskByName(input))) {

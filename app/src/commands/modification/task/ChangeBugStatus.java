@@ -1,5 +1,6 @@
 package commands.modification.task;
 
+import commands.helpers.GetListOf;
 import utils.ListingHelpers;
 import utils.ParsingHelpers;
 import commands.contracts.Command;
@@ -27,12 +28,7 @@ public class ChangeBugStatus implements Command {
                 .noneMatch(task -> task.getType().equals(TaskType.BUG))) {
             return "No bugs created yet.";
         }
-        List<Bug> bugs = new ArrayList<>();
-        for (Task task : repository.getTasks()) {
-            if (task.getType().equals(TaskType.BUG)) {
-                bugs.add((Bug) task);
-            }
-        }
+        List<Bug> bugs = GetListOf.bugs(repository);
 
 
         Bug bug = null;
@@ -41,9 +37,7 @@ public class ChangeBugStatus implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(bugs));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter task: ");
                 input = scanner.nextLine();
             } else if (bugs.contains(repository.findTaskByName(input))) {

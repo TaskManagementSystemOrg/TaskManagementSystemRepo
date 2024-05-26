@@ -25,9 +25,7 @@ public class ShowPersonsActivityCommand implements Command {
         String input = scanner.nextLine();
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getPeople()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter person: ");
                 input = scanner.nextLine();
             } else if (taskManagementSystemRepository.getPeople().contains(taskManagementSystemRepository.findPersonByName(input))) {

@@ -35,7 +35,7 @@ public class BoardImpl implements Board {
 
     @Override
     public List<Integer> getTasks() {
-        return new ArrayList<>(tasksId);
+        return tasksId;
     }
     @Override
     public List<String> getActivity() {

@@ -1,5 +1,6 @@
 package commands.modification.task;
 
+import commands.helpers.GetListOf;
 import utils.ListingHelpers;
 import utils.ParsingHelpers;
 import commands.contracts.Command;
@@ -27,12 +28,7 @@ public class ChangeStoryStatus implements Command {
                 .noneMatch(task -> task.getType().equals(TaskType.STORY))) {
             return "No feedback created yet.";
         }
-        List<Story> stories = new ArrayList<>();
-        for (Task task : repository.getTasks()) {
-            if (task.getType().equals(TaskType.STORY)) {
-                stories.add((Story) task);
-            }
-        }
+        List<Story> stories = GetListOf.stories(repository);
 
 
         Story story = null;
@@ -41,9 +37,7 @@ public class ChangeStoryStatus implements Command {
 
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(stories));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter task: ");
                 input = scanner.nextLine();
             } else if (stories.contains(repository.findTaskByName(input))) {

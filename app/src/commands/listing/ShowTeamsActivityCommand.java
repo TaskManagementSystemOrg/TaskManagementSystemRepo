@@ -25,9 +25,7 @@ public class ShowTeamsActivityCommand implements Command {
         String input = scanner.nextLine();
         while (true) {
             if (input.equalsIgnoreCase("help")) {
-                System.out.println("====================");
                 System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getTeams()));
-                System.out.println("====================");
                 System.out.println("Type help to see all options or enter a team name: ");
                 input = scanner.nextLine();
             } else if (taskManagementSystemRepository.getTeams().contains(taskManagementSystemRepository.findTeamByName(input))) {

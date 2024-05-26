@@ -31,9 +31,7 @@ public class ShowBoardActivityCommand implements Command {
             input = scanner.nextLine();
             while (stringBuilder.isEmpty()) {
                 if (input.equalsIgnoreCase("help")) {
-                    System.out.println("====================");
                     System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards()));
-                    System.out.println("====================");
                     System.out.println("Type help to see all options or enter board name:");
                     input = scanner.nextLine();
                 } else if (taskManagementSystemRepository.findBoardByName(input) != null) {
