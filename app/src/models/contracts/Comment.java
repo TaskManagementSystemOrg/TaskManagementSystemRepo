@@ -1,4 +1,4 @@
 package models.contracts;
 
-public interface Comment {
+public interface Comment extends Printable{
 }

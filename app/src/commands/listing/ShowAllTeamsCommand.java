@@ -19,6 +19,8 @@ public class ShowAllTeamsCommand implements Command {
         if (teams.isEmpty()) {
             return "There are no teams created yet.";
         }
-        return ListingHelpers.elementsToString(teams);
+        return "====================\n" +
+                ListingHelpers.elementsToString(teams) +
+                "\n====================";
     }
 }

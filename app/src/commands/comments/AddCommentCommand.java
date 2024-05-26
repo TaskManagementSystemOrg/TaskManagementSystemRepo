@@ -18,7 +18,7 @@ public class AddCommentCommand implements Command {
     @Override
     public String execute(List<String> parameters) {
         if (repository.getCurrentBoard() == null) {
-            return "Enter a board first.";
+            return "Enter into a board first.";
         }
         Scanner scanner = new Scanner(System.in);
         Task taskToComment = null;

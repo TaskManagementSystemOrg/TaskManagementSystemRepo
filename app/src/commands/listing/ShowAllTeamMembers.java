@@ -8,6 +8,7 @@ import models.contracts.Person;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class ShowAllTeamMembers implements Command {
     public static final int EXPECTED_NUMBER_OF_ARGUMENTS = 1;
@@ -19,17 +20,35 @@ public class ShowAllTeamMembers implements Command {
 
     @Override
     public String execute(List<String> parameters) {
-        ValidationHelpers.validateArgumentsCount(parameters, EXPECTED_NUMBER_OF_ARGUMENTS);
-        String name = parameters.get(0);
-        List<String> peopleNames = taskManagementSystemRepository.findTeamByName(name).getMembers();
-        if (peopleNames.isEmpty()) {
-            return "There are no members in this team.";
+        if (taskManagementSystemRepository.getTeams().isEmpty()) {
+            return "No teams created yet.";
         }
-        List<Person> people = new ArrayList<>();
-        for(String personName : peopleNames)
-        {
-            people.add(taskManagementSystemRepository.findPersonByName(personName));
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter team name or type help to see all teams: ");
+        String input = scanner.nextLine();
+        while (true) {
+            if (input.equalsIgnoreCase("help")) {
+                System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getTeams()));
+                System.out.println("Enter team name or type help to see all teams: ");
+                input = scanner.nextLine();
+            } else if (taskManagementSystemRepository.getTeams().contains(taskManagementSystemRepository.findTeamByName(input))) {
+                if (taskManagementSystemRepository.findTeamByName(input).getMembers().isEmpty()) {
+                    return "No members in team yet.";
+                }
+                StringBuilder stringBuilder = new StringBuilder();
+                for (String string: taskManagementSystemRepository.findTeamByName(input).getMembers()) {
+                    stringBuilder.append("====================\n");
+                    stringBuilder.append("Name: ");
+                    stringBuilder.append(string);
+                    stringBuilder.append("\n");
+                    stringBuilder.append("====================");
+                }
+                return stringBuilder.toString();
+            } else {
+                System.out.println("Not a valid input. Try again.");
+                input = scanner.nextLine();
+            }
         }
-        return ListingHelpers.elementsToString(people);
     }
 }

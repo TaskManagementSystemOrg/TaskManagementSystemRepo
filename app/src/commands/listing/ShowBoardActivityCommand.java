@@ -1,5 +1,6 @@
 package commands.listing;
 
+import Utils.ListingHelpers;
 import Utils.ValidationHelpers;
 import commands.contracts.Command;
 import core.contracts.TaskManagementSystemRepository;
@@ -16,6 +17,9 @@ public class ShowBoardActivityCommand implements Command {
 
     @Override
     public String execute(List<String> parameters) {
+        if (taskManagementSystemRepository.getBoards().isEmpty()) {
+            return "No boards created yet.";
+        }
         Scanner scanner = new Scanner(System.in);
         String input = null;
         StringBuilder stringBuilder = new StringBuilder();
@@ -29,7 +33,9 @@ public class ShowBoardActivityCommand implements Command {
             input = scanner.nextLine();
             while (stringBuilder.isEmpty()) {
                 if (input.equalsIgnoreCase("help")) {
-                    System.out.println(taskManagementSystemRepository.getBoards());
+                    System.out.println("====================");
+                    System.out.println(ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards()));
+                    System.out.println("====================");
                     System.out.println("Type help to see all options or enter board name:");
                     input = scanner.nextLine();
                 } else if (taskManagementSystemRepository.findBoardByName(input) != null) {
@@ -38,7 +44,7 @@ public class ShowBoardActivityCommand implements Command {
                         return stringBuilder.toString();
                     }
                 } else {
-                    System.out.println("Not a valid board. Try again:");
+                    System.out.println("Not a valid input. Try again:");
                     input = scanner.nextLine();
                 }
             }

@@ -19,7 +19,8 @@ public class ShowAllPeopleCommand implements Command {
         if (people.isEmpty()) {
             return "There are no registered users.";
         }
-
-        return ListingHelpers.elementsToString(people);
+        return "====================\n" +
+                ListingHelpers.elementsToString(people) +
+                "\n====================";
     }
 }

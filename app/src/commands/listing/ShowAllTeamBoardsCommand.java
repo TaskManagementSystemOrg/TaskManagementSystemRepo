@@ -23,7 +23,9 @@ public class ShowAllTeamBoardsCommand implements Command {
             return "Create a team and board first";
         }
         if (taskManagementSystemRepository.getCurrentTeam() != null) {
-            return ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.getCurrentTeam()));
+            return "====================\n" +
+                    ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.getCurrentTeam())) +
+                    "\n====================";
         }
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter team name or type help to see all teams: ");
@@ -37,7 +39,10 @@ public class ShowAllTeamBoardsCommand implements Command {
                 if (taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)).isEmpty()) {
                     return "No boards created in this team yet.";
                 }
-                return ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)));
+                return "====================\n" +
+                        ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input))) +
+                        "\n====================";
+//                return ListingHelpers.elementsToString(taskManagementSystemRepository.getBoards(taskManagementSystemRepository.findTeamByName(input)));
             } else {
                 System.out.println("Not a valid input. Try again.");
                 input = scanner.nextLine();
