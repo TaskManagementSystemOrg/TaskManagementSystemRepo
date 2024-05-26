@@ -31,6 +31,10 @@ public class CommandFactoryImpl implements CommandFactory {
     public Command createCommandFromCommandName(String commandTypeAsString, TaskManagementSystemRepository taskManagementSystemRepository) {
         CommandType commandType = ParsingHelpers.tryParseEnum(commandTypeAsString, CommandType.class, String.format(INVALID_COMMAND, commandTypeAsString));
         clearConsole();
+        if(taskManagementSystemRepository.getCurrentBoard() != null)
+        {
+            taskManagementSystemRepository.printBoardTasks(taskManagementSystemRepository.getCurrentBoard());
+        }
 
         switch (taskManagementSystemRepository.getCurrentUser()) {
             case NOT_LOGGED_IN:
